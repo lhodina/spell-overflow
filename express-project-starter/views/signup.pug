@@ -3,13 +3,16 @@ extends layout.pug
 include utils.pug
 
 block content
+    +validationErrorSummary(errors)
     form(action="/user/signup" method="post")
         input(type="hidden" name="_csrf" value=csrfToken)
         +field("First Name", "firstName", user.firstName)
-        +field("Last Name", "firstName", user.lastName)
+        +field("Last Name", "lastName", user.lastName)
         +field("Username", "username", user.username)
         +field("Password", "password", user.password, 'password')
         +field('Confirm Password', 'confirmPassword', '', 'password')
         +field("Email", "email", user.email)
         input(type="submit" value="Submit")
         a(href='/') Cancel
+    div
+        a(href='/user/login') Already have an account?
