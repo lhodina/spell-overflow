@@ -1,7 +1,15 @@
 extends layout.pug
-include utils.pug
 
+include utils.pug
 
 block content
     form(action="/user/signup" method="post")
-        input(type="hidden" name="_csrf" value=csrfToken) 
+        input(type="hidden" name="_csrf" value=csrfToken)
+        +field("First Name", "firstName", user.firstName)
+        +field("Last Name", "firstName", user.lastName)
+        +field("Username", "username", user.username)
+        +field("Password", "password", user.password, 'password')
+        +field('Confirm Password', 'confirmPassword', '', 'password')
+        +field("Email", "email", user.email)
+        input(type="submit" value="Submit")
+        a(href='/') Cancel
