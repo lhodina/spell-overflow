@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany( models.Answer, { foreignKey: "answerId" })
     User.hasMany( models.Upvote, { foreignKey: "userId" })
     User.hasMany( models.Downvote, { foreignKey: "userId" })
-
   };
   return User;
 };

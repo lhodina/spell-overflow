@@ -4,11 +4,14 @@ const bcrypt = require('bcryptjs');
 
 for (i = 0; i < 10; i++) {
     const user = {
-        firstName: faker.name.firstName(), // Rowan Nikolaus
-        lastName: faker.name.lastName(), // Kassandra.Haley@erich.biz
-        password: bcrypt.hashSync(faker.internet.password()), // random contact card containing many properties
+        firstName: faker.name.firstName(),
+        lastName: faker.name.lastName(),
+        username: faker.internet.userName(),
+        password: bcrypt.hashSync(faker.internet.password()),
         email: faker.internet.email(),
-        profilePic: faker.image.avatar()
+        profilePic: faker.image.avatar(),
+        createdAt: new Date(),
+        updatedAt: new Date()
     };
     console.log(user, ",");
 };
