@@ -1,23 +1,34 @@
 const express = require('express');
 const router = express.Router();
-const db = require("../db/models")
 const { csrfProtection, asyncHandler } = require('./utils');
-const bcrypt = require("bcryptjs")
 const { check, validationResult } = require('express-validator');
+const db = require("../db/models");
 const { User, Question } = db;
+const { requireAuth } = require('../auth');
 
-// add authentication check
+// const authCheck = (req, res, next) => {
+//     if (req.session.user) {
+//         next();
+//     } else {
+//         res.redirect('/users/login');
+//     };
+// };
 
-router.get('/', asyncHandler(async (req, res) => {
-    const questions = await Question.findAll()
+router.get('/', csrfProtection, asyncHandler(async (req, res) => {
+    const questions = await Question.findAll();
     let userId = 0;
     if (req.session.user) {
-        userId = req.session.user.userId
+        userId = req.session.user.userId;
     }
-    // Task 23a
-    res.render('index', { questions, userId, csrfToken: req.csrfToken() })
+    res.render('index', { questions, userId, csrfToken: req.csrfToken() });
 }));
 
-router.get('/questions/new')
+router.get('/questions/new', requireAuth, csrfProtection, (req, res) => {
+    res.render('new-question', { csrfToken: req.csrfToken() });
+});
+
+router.post('/', csrfProtection, asyncHandler(async (req, res) => {
+
+}));
 
 module.exports = router;
