@@ -51,8 +51,10 @@ app.use((req, res, next) => {
 
 store.sync();
 
+
+app.use('/users', usersRouter);
+
 app.use(indexRouter);
-app.use(usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

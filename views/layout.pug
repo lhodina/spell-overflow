@@ -7,9 +7,9 @@ html
   body
   if locals.authenticated
     h1 Welcome #{user.firstName}
-    form(action='/user/logout' method='post')
+    form(action='/users/logout' method='post')
       button Logout
   else
-    a(href='/user/login') Login
-    a(href='/user/signup') Sign up
+    a(href='/users/login') Login
+    a(href='/users/signup') Sign up
   block content
