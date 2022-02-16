@@ -11,7 +11,7 @@ router.get('/', function (req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/user/signup', csrfProtection, (req, res) => {
+router.get('/signup', csrfProtection, (req, res) => {
   const user = db.User.build();
 
   res.render("signup", {
@@ -57,7 +57,7 @@ const userValidators = [
     .withMessage('Email Address is not a valid email'),
 ];
 
-router.post('/user/signup', csrfProtection, userValidators, asyncHandler(async (req, res) => {
+router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, res) => {
   const {
     firstName,
     lastName,
@@ -92,7 +92,7 @@ router.post('/user/signup', csrfProtection, userValidators, asyncHandler(async (
   }
 }));
 
-router.get('/user/login', csrfProtection, (req, res) => {
+router.get('/login', csrfProtection, (req, res) => {
   res.render('login', {
     title: 'Login',
     csrfToken: req.csrfToken()
@@ -109,7 +109,7 @@ const loginValidators = [
 ];
 
 
-router.post('/user/login', csrfProtection, loginValidators, asyncHandler(async (req, res) => {
+router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, res) => {
   const {
     email,
     password
@@ -141,7 +141,7 @@ router.post('/user/login', csrfProtection, loginValidators, asyncHandler(async (
   });
 }));
 
-router.post('/user/logout', (req, res) => {
+router.post('/logout', (req, res) => {
   delete req.session.auth;
     req.session.save(() => {
         res.redirect('/')
