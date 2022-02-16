@@ -6,6 +6,7 @@ const db = require("../db/models");
 const { User, Question } = db;
 const { requireAuth } = require('../auth');
 
+// may or may not need below:
 // const authCheck = (req, res, next) => {
 //     if (req.session.user) {
 //         next();
@@ -14,21 +15,25 @@ const { requireAuth } = require('../auth');
 //     };
 // };
 
-router.get('/', csrfProtection, asyncHandler(async (req, res) => {
-    const questions = await Question.findAll();
-    let userId = 0;
-    if (req.session.user) {
-        userId = req.session.user.userId;
-    }
-    res.render('index', { questions, userId, csrfToken: req.csrfToken() });
-}));
+
 
 router.get('/questions/new', requireAuth, csrfProtection, (req, res) => {
     res.render('new-question', { csrfToken: req.csrfToken() });
 });
 
-router.post('/', csrfProtection, asyncHandler(async (req, res) => {
-
+router.post('/questions/new', csrfProtection, asyncHandler(async (req, res) => {
+    console.log(req.body)
+    const {
+        headline,
+        content
+    } = req.body;
+    const question = await db.Question.build({
+        headline,
+        content
+    })
+    //testQuestion.content = Question.content;
+    await question.save();
+    res.redirect('/')
 }));
 
 module.exports = router;
