@@ -10,7 +10,5 @@ for (i = 0; i < 10; i++) {
         email: faker.internet.email(),
         profilePic: faker.image.avatar()
     };
-    console.log(user, ",")
-
-    
-    
+    console.log(user, ",");
+};
