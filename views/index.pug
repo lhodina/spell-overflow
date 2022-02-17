@@ -9,3 +9,10 @@ append head
 block content
   h1= title
   p Welcome to your Project Skeleton
+    each question in questions
+      p= question.headline
+      
+      if question.picture
+        img(src = `${question.picture}`)
+
+      //- still need button/a-tag for 'Ask Question'
