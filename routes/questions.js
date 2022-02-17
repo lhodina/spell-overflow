@@ -20,6 +20,11 @@ const { requireAuth } = require('../auth');
 //     res.render('new-question', { csrfToken: req.csrfToken() });
 // });
 
+router.get('/questions', csrfProtection, asyncHandler(async (req, res) => {
+    const questions = await db.Question.findAll();
+    res.render('all-questions', { questions, csrfToken: req.csrfToken() });
+}));
+
 router.get('/questions/:id(\\d+)',  csrfProtection, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id)
     console.log('THIS IS QUESTIONNID', questionId)
@@ -70,10 +75,7 @@ router.get('/questions/edit/:id(\\d+)',  csrfProtection, asyncHandler(async (req
     });
 }));
 
-router.use((req, res, next) => {
-    console.log("REQUEST HITS HERE  ===============================================")
-    next();
-  })
+
 
 router.post('/questions/edit/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     console.log("IN THE EDIT ROUTE")
@@ -96,18 +98,30 @@ router.post('/questions/edit/:id(\\d+)', csrfProtection, asyncHandler(async (req
 }));
 
 router.get('/questions/delete/:id', csrfProtection, asyncHandler(async (req, res) => {
-    const questionId = parseInt(req.params.id, 10);
-    const question = await db.Question.findByPk(questionId);
+    const questionId = parseInt(req.params.id);
+    console.log("QUESTIONID!!!!", questionId)
+    
+    const questionDelete = await db.Question.findByPk(questionId);
+    console.log("QUESTIONUPDATE!@#!@#@!$", questionDelete)
+
     res.render('delete-question', {
-        headline: '',
-        content: '',
-        csrfToken: req.csrfToken(),
-    })
+        headline: questionDelete.headline,
+        content: questionDelete.content,
+        questionId,
+        csrfToken: req.csrfToken()
+    });
 }));
 
-router.post('/questions/delete/:id', csrfProtection, asyncHandler(async (req, res) => {
+// router.use((req, res, next) => {
+//     console.log("REQUEST HITS HERE  ===============================================")
+//     next();
+//   })
+
+router.post('/questions/delete/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
+    console.log('INSIDE DELETE POST')
     const questionId = parseInt(req.params.id, 10);
     const question = await db.Question.findByPk(questionId);
+
     await question.destroy();
     res.redirect('/questions');
 }));
