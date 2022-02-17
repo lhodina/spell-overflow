@@ -8,7 +8,7 @@ const { User, Question, Answer } = db;
 const { requireAuth } = require('../auth');
 
 
-router.get('/answers/new', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
+router.get('/answers/new', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
     res.render('new-answer', {
         csrfToken: req.csrfToken(),
     });
