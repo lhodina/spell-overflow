@@ -15,12 +15,31 @@ router.get('/answers/new', requireAuth, csrfProtection, asyncHandler(async (req,
 }));
 
 
-// router.post('/questions/:id/answers', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
-//     res.render('/new-answer', {
-//         csrfToken: csrfToken(),
-//     });
 
-// }));
+router.post('/answers/new', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
+    const questionId = parseInt(req.params.id);
+    // const question = await db.Question.findByPk(questionId);
+
+    // const answers = await db.Question.findAll({include: ["Answers"]});
+    
+    const {
+        content,
+        picture,
+        userId
+    } = req.body;
+
+    const answer = await db.Answer.create({
+        content,
+        picture,
+        userId,
+        questionId: res.locals.question.id
+    });
+
+
+    console.log("ANSWER.QUESTIONID:", answer.questionId)
+
+    res.redirect('/');
+}));
 
 
 
