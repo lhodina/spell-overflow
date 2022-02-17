@@ -5,6 +5,6 @@ include utils.pug
 block content
     form(action="/questions/new" method="post")
         input(type="hidden" name="_csrf" value=csrfToken)
-        +field("Title", "headline", question.headline, "textarea")
+        +field("Title", "headline", "", "textarea")
         +field("Ask a public question", "content", "", "textarea")
         button Post your question

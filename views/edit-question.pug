@@ -1,0 +1,9 @@
+extends layout.pug
+
+include utils.pug
+
+block content
+    form(action=`/questions/edit/${questionId}` method="post")
+        +field("Title", "headline", 'want correct prefilled text here', "textarea") 
+        +field("Ask a public question", "content", "", "textarea") 
+            button Confirm Edit 
