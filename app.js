@@ -38,7 +38,7 @@ app.use(
 app.use(restoreUser);
 
 app.use((req, res, next) => {
-  console.log("request hits here ===============================================")
+  //console.log("request hits here ===============================================")
   next();
 })
 // create Session table if it doesn't already exist
@@ -55,7 +55,7 @@ app.use((req, res, next) => {
 })
 
 store.sync();
-console.log("started app.js")
+//console.log("started app.js")
 
 
 app.use('/users', usersRouter);

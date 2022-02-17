@@ -52,16 +52,14 @@ router.post('/questions/new', csrfProtection, asyncHandler(async (req, res) => {
     res.redirect('/')
 }));
 
-//want correct prefilled text here
 router.get('/questions/edit/:id', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id);
-    // console.log('THIS IS questionHEADLINE', (req.params.dataValues.headline))
-    //console.log('THIS IS QUESTIONID', questionId)
-    const question = await db.Question.findByPk(questionId);
-    //console.log("THIS IS QUESTION", question)
+    
+    const questionEdit = await db.Question.findByPk(questionId);
+    
     res.render('edit-question', {
-        headline: '',
-        content: '',
+        headline: questionEdit.headline,
+        content: questionEdit.content,
         csrfToken: req.csrfToken()
     });
 }));
