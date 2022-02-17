@@ -23,8 +23,8 @@ router.get('/questions/:id', requireAuth, csrfProtection, asyncHandler(async (re
 
     // const attractionId = parseInt(req.params.id, 10);
     const specificQuestion = await db.Question.findByPk(questionId);
-    console.log('THIS IS SPECIFIC QUESTION', specificQuestion)
-    
+    // console.log('THIS IS SPECIFIC QUESTION', specificQuestion)
+
     res.render('question', {
         headline: specificQuestion.headline,
         content: specificQuestion.content,
@@ -46,7 +46,7 @@ router.post('/questions/new', csrfProtection, asyncHandler(async (req, res) => {
         headline,
         content,
         userId: res.locals.user.id,
-    })
+    });
     //testQuestion.content = Question.content;
     await question.save();
     res.redirect('/')
@@ -64,26 +64,38 @@ router.get('/questions/edit/:id', requireAuth, csrfProtection, asyncHandler(asyn
         content: '',
         csrfToken: req.csrfToken()
     });
-
-}))
+}));
 
 router.post('/questions/edit/:id', csrfProtection, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id, 10);
     const questionUpdate = await db.Question.findByPk(questionId);
-
     const {
         headline,
         content,
     } = req.body;
-
     const question = {
         headline,
         content,
     };
-
     await questionUpdate.update(question);
     res.redirect(`/questions/${questionId}`);
+}));
 
-}))
+router.get('/questions/delete/:id', csrfProtection, asyncHandler(async (req, res) => {
+    const questionId = parseInt(req.params.id, 10);
+    const question = await db.Question.findByPk(questionId);
+    res.render('delete-question', {
+        headline: '',
+        content: '',
+        csrfToken: req.csrfToken(),
+    })
+}));
+
+router.post('/questions/delete/:id', csrfProtection, asyncHandler(async (req, res) => {
+    const questionId = parseInt(req.params.id, 10);
+    const question = await db.Question.findByPk(questionId);
+    await question.destroy();
+    res.redirect('/questions');
+}));
 
 module.exports = router;
