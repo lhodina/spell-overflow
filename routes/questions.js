@@ -60,7 +60,7 @@ router.post('/questions/new', requireAuth, csrfProtection, asyncHandler(async (r
     res.redirect('/')
 }));
 
-router.get('/questions/edit/:id(\\d+)',  csrfProtection, asyncHandler(async (req, res) => {
+router.get('/questions/edit/:id(\\d+)', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id);
     //console.log("QUESTIONID!!!!", questionId)
     
@@ -97,7 +97,7 @@ router.post('/questions/edit/:id(\\d+)', csrfProtection, asyncHandler(async (req
     res.redirect(`/questions/${questionId}`);
 }));
 
-router.get('/questions/delete/:id', csrfProtection, asyncHandler(async (req, res) => {
+router.get('/questions/delete/:id', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id);
     console.log("QUESTIONID!!!!", questionId)
     
