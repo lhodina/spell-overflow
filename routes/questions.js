@@ -15,7 +15,12 @@ const { requireAuth } = require('../auth');
 //     };
 // };
 
-router.get('/questions/:id', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
+// router.get('/questions/new', requireAuth, csrfProtection, (req, res) => {
+//     console.log('INSIDE /QUESTIONS/NEW GET ROUTER')
+//     res.render('new-question', { csrfToken: req.csrfToken() });
+// });
+
+router.get('/questions/:id(\\d+)',  csrfProtection, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id)
     console.log('THIS IS QUESTIONNID', questionId)
     console.log('THIS IS REQPARAMS', req.params)
@@ -32,11 +37,9 @@ router.get('/questions/:id', requireAuth, csrfProtection, asyncHandler(async (re
     });
 }));
 
-router.get('/questions/new', requireAuth, csrfProtection, (req, res) => {
-    res.render('new-question', { csrfToken: req.csrfToken() });
-});
 
-router.post('/questions/new', csrfProtection, asyncHandler(async (req, res) => {
+
+router.post('/questions/new', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
     console.log(req.body)
     const {
         headline,
@@ -52,28 +55,41 @@ router.post('/questions/new', csrfProtection, asyncHandler(async (req, res) => {
     res.redirect('/')
 }));
 
-router.get('/questions/edit/:id', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
+router.get('/questions/edit/:id(\\d+)',  csrfProtection, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id);
+    //console.log("QUESTIONID!!!!", questionId)
     
     const questionEdit = await db.Question.findByPk(questionId);
-    
+    //console.log("QUESTIONUPDATE!@#!@#@!$", questionEdit)
+
     res.render('edit-question', {
         headline: questionEdit.headline,
         content: questionEdit.content,
+        questionId,
         csrfToken: req.csrfToken()
     });
 }));
 
-router.post('/questions/edit/:id', csrfProtection, asyncHandler(async (req, res) => {
+router.use((req, res, next) => {
+    console.log("REQUEST HITS HERE  ===============================================")
+    next();
+  })
+
+router.post('/questions/edit/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
+    console.log("IN THE EDIT ROUTE")
     const questionId = parseInt(req.params.id, 10);
     const questionUpdate = await db.Question.findByPk(questionId);
+    console.log("QUESTIONID!!!!", questionId)
+    console.log("QUESTIONUPDATE!@#!@#@!$", questionUpdate)
     const {
         headline,
         content,
+        
     } = req.body;
     const question = {
         headline,
         content,
+        // csrfToken: req.csrfToken(),
     };
     await questionUpdate.update(question);
     res.redirect(`/questions/${questionId}`);
