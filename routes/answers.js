@@ -8,37 +8,38 @@ const { User, Question, Answer } = db;
 const { requireAuth } = require('../auth');
 
 
-router.get('/answers/new', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
+router.get('/:id/answers/new', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
+    const questionId = parseInt(req.params.id);
+    // console.log('ANSWERS REQPARAMS', req.params)
+    // console.log('ANSWERS REQPARAMSIDDDDDD', req.params.id)
+    const question = await db.Question.findByPk(questionId);
+    //console.log(question)
     res.render('new-answer', {
+        questionId,
         csrfToken: req.csrfToken(),
     });
 }));
 
 
-
-router.post('/answers/new', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
-    const questionId = parseInt(req.params.id);
+router.post('/:id/answers/new', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
+    // console.log("INSIDE POST ANSWER ROUTE", (req.body))
+     const questionId = parseInt(req.params.id);
     // const question = await db.Question.findByPk(questionId);
-
-    // const answers = await db.Question.findAll({include: ["Answers"]});
-    
+    // console.log(question)
+    // console.log('THIS IS QUESTIONID IN POST ROUTE', questionId)
     const {
         content,
-        picture,
-        userId
     } = req.body;
-
-    const answer = await db.Answer.create({
+    // console.log("NEW REQ BODY", req.body)
+    const answer = await db.Answer.build({
         content,
-        picture,
-        userId,
-        questionId: res.locals.question.id
+        picture: '',
+        userId: res.locals.user.id,
+        questionId: parseInt(req.params.id),
     });
-
-
-    console.log("ANSWER.QUESTIONID:", answer.questionId)
-
-    res.redirect('/');
+    //testQuestion.content = Question.content;
+    await answer.save();
+    res.redirect('/')
 }));
 
 
