@@ -15,9 +15,8 @@ router.get('/questions/:id/answers/new', requireAuth, csrfProtection, asyncHandl
     });
 }));
 
-// something wrong with post
 router.post('/questions/:id/answers/new', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
-    const questionId = parseInt(req.params.id);
+    const questionId = parseInt(req.params.id, 10);
     const {
         content,
     } = req.body;
