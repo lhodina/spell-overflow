@@ -34,7 +34,7 @@ router.post('/questions/:id/answers/new', csrfProtection, requireAuth, asyncHand
 // this should target things within its own question only
 router.get('/answers/edit/:id', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
     const answerId = parseInt(req.params.id)
-    const answer = await db.Answer.findByPk(answerId, 10)
+    const answer = await db.Answer.findByPk(answerId)
 
     // console.log("--------------------", answer);
 
@@ -49,6 +49,7 @@ router.get('/answers/edit/:id', requireAuth, csrfProtection, asyncHandler(async 
 router.post('/answers/edit/:id', asyncHandler(async (req, res) => {
     const answerId = parseInt(req.params.id, 10);
     const answerEdit = await db.Answer.findByPk(answerId);
+    const questionId = answerEdit.questionId
 
     const {
         content,
@@ -59,7 +60,7 @@ router.post('/answers/edit/:id', asyncHandler(async (req, res) => {
     };
 
     await answerEdit.update(answer);
-    res.redirect(`/questions/${answerId}`);
+    res.redirect(`/questions/${questionId}`);
 }));
 
 router.get('/answers/delete/:id', csrfProtection, asyncHandler(async (req, res) => {
