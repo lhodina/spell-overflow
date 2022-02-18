@@ -6,7 +6,7 @@ const db = require("../db/models");
 const { User, Question, Answer } = db;
 const { requireAuth } = require('../auth');
 
-router.get('/questions/:id/answers/new', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
+router.get('/questions/:id(\\d+)/answers/new', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id);
     const question = await db.Question.findByPk(questionId);
     res.render('new-answer', {
@@ -15,7 +15,7 @@ router.get('/questions/:id/answers/new', requireAuth, csrfProtection, asyncHandl
     });
 }));
 
-router.post('/questions/:id/answers/new', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
+router.post('/questions/:id(\\d+)/answers/new', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id, 10);
     const {
         content,
@@ -32,7 +32,7 @@ router.post('/questions/:id/answers/new', csrfProtection, requireAuth, asyncHand
 }));
 
 // this should target things within its own question only
-router.get('/answers/edit/:id', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
+router.get('/answers/edit/:id(\\d+)', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
     const answerId = parseInt(req.params.id)
     const answer = await db.Answer.findByPk(answerId)
 
@@ -46,7 +46,7 @@ router.get('/answers/edit/:id', requireAuth, csrfProtection, asyncHandler(async 
 }));
 
 // it's returning invalid csrf token with csrfProtection
-router.post('/answers/edit/:id', asyncHandler(async (req, res) => {
+router.post('/answers/edit/:id(\\d+)', asyncHandler(async (req, res) => {
     const answerId = parseInt(req.params.id, 10);
     const answerEdit = await db.Answer.findByPk(answerId);
     const questionId = answerEdit.questionId
@@ -63,7 +63,7 @@ router.post('/answers/edit/:id', asyncHandler(async (req, res) => {
     res.redirect(`/questions/${questionId}`);
 }));
 
-router.get('/answers/delete/:id', csrfProtection, asyncHandler(async (req, res) => {
+router.get('/answers/delete/:id(\\d+)', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
     const answerId = parseInt(req.params.id, 10);
     const answer = await db.Answer.findByPk(answerId);
     res.render('delete-answer', {
@@ -73,12 +73,20 @@ router.get('/answers/delete/:id', csrfProtection, asyncHandler(async (req, res) 
     });
 }));
 
-router.post('/answers/delete/:id', csrfProtection, asyncHandler(async (req, res) => {
+router.post('/answers/delete/:id(\\d+)', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
     const answerId = parseInt(req.params.id, 10);
     const answer = await db.Answer.findByPk(answerId);
     const questionId = answer.questionId
     await answer.destroy();
     res.redirect(`/questions/${questionId}`);
+}));
+
+router.delete('/answers/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+    const answerId = parseInt(req.params.id, 10);
+    const answer = await db.Answer.findByPk(answerId);
+    await answer.destroy();
+
+    res.json({message: 'Success'})
 }));
 
 /*
