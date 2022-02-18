@@ -1,10 +1,7 @@
 extends layout.pug
 
-
-
 block content
     form(action=`/questions/delete/${questionId}` method='post')
       input(type='hidden' name='_csrf' value=csrfToken)
-
       button Delete Question
-      a(href=`/question/${questionId}` role='button') Cancel
+      a(href=`/questions/${questionId}` role='button') Cancel

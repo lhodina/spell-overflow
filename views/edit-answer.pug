@@ -4,5 +4,5 @@ include utils.pug
 
 block content
     form(action=`/answers/edit/${answerId}` method="post")
-        +field("Content", "content", content, "textarea") 
-            button Confirm Edit Answer
+        +field("Content", "content", content, "textarea")
+        button Confirm Edit Answer

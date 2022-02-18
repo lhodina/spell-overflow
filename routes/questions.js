@@ -15,13 +15,15 @@ const { requireAuth } = require('../auth');
 //     };
 // };
 
+// there should be a router to load up /questions
+
 router.get('/questions/:id', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
     const id = parseInt(req.params.id)
     //console.log('THIS IS QUESTIONNID', questionId)
     //console.log('THIS IS REQPARAMS', req.params)
     //console.log('THIS IS REQPARAMSID', req.params.id)
 
-    
+
     // console.log('before answers')
     const answers = await db.Answer.findAll({
         where: {
@@ -32,9 +34,9 @@ router.get('/questions/:id', requireAuth, csrfProtection, asyncHandler(async (re
 
     const specificQuestion = await db.Question.findByPk(id);
     // console.log('THIS IS QUESTIONSSSSS', specificQuestion)
-    
-    
-    
+
+
+
     res.render('question', {
         headline: specificQuestion.headline,
         content: specificQuestion.content,
