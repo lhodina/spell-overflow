@@ -15,6 +15,7 @@ router.get('/questions/:id/answers/new', requireAuth, csrfProtection, asyncHandl
     });
 }));
 
+// something wrong with post
 router.post('/questions/:id/answers/new', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id, 10);
     const {
@@ -33,8 +34,8 @@ router.post('/questions/:id/answers/new', csrfProtection, requireAuth, asyncHand
 
 // this should target things within its own question only
 router.get('/answers/edit/:id', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
-    const answerId = parseInt(req.params.id)
-    const answer = await db.Answer.findByPk(answerId, 10)
+    const answerId = parseInt(req.params.id, 10)
+    const answer = await db.Answer.findByPk(answerId)
 
     // console.log("--------------------", answer);
 
