@@ -12,12 +12,21 @@ router.get('/questions/new', requireAuth, csrfProtection, (req, res) => {
 
 router.get('/questions', csrfProtection, asyncHandler(async (req, res) => {
     const questions = await db.Question.findAll();
+    console.log(questions)
     res.render('all-questions', { questions, csrfToken: req.csrfToken() });
 }));
 
 router.get('/questions/:id(\\d+)',  csrfProtection, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id)
+    
+    
     const specificQuestion = await db.Question.findByPk(questionId);
+    const user = await db.User.findAll({
+        where: {
+            id: specificQuestion.userId
+        }
+    })
+    console.log('HELLO', user.firstName);
     const answers = await db.Answer.findAll({
         where: {
             questionId
@@ -27,6 +36,7 @@ router.get('/questions/:id(\\d+)',  csrfProtection, asyncHandler(async (req, res
     res.render('question', {
         headline: specificQuestion.headline,
         content: specificQuestion.content,
+        username: user.username,
         answers,
         csrfToken: req.csrfToken()
     });
