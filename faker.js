@@ -13,5 +13,5 @@ for (i = 0; i < 10; i++) {
         createdAt: new Date(),
         updatedAt: new Date()
     };
-    console.log(user, ",");
+    // console.log(user, ",");
 };

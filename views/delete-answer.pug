@@ -1,0 +1,7 @@
+extends layout.pug
+
+block content
+    form(action=`/answers/delete/${answerId}` method='post')
+      input(type='hidden' name='_csrf' value=csrfToken)
+      button Delete Answer 
+      a(href=`/questions` role='button') Cancel

@@ -3,6 +3,7 @@ const router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils');
 // const { check, validationResult } = require('express-validator');
 const db = require("../db/models");
+
 const { requireAuth } = require('../auth');
 
 router.get('/questions/new', requireAuth, csrfProtection, (req, res) => {
@@ -17,9 +18,11 @@ router.get('/questions', csrfProtection, asyncHandler(async (req, res) => {
 router.get('/questions/:id(\\d+)',  csrfProtection, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id)
     const specificQuestion = await db.Question.findByPk(questionId);
+
     res.render('question', {
         headline: specificQuestion.headline,
         content: specificQuestion.content,
+        answers,
         csrfToken: req.csrfToken()
     });
 }));
