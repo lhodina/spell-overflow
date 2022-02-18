@@ -34,9 +34,6 @@ router.get('/questions/:id', requireAuth, csrfProtection, asyncHandler(async (re
 
     const specificQuestion = await db.Question.findByPk(id);
     // console.log('THIS IS QUESTIONSSSSS', specificQuestion)
-
-
-
     res.render('question', {
         headline: specificQuestion.headline,
         content: specificQuestion.content,
