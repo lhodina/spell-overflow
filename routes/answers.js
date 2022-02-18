@@ -23,7 +23,7 @@ router.get('/:id/answers/new', requireAuth, csrfProtection, asyncHandler(async (
 
 router.post('/:id/answers/new', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
     // console.log("INSIDE POST ANSWER ROUTE", (req.body))
-     const questionId = parseInt(req.params.id);
+    //  const questionId = parseInt(req.params.id);
     // const question = await db.Question.findByPk(questionId);
     // console.log(question)
     // console.log('THIS IS QUESTIONID IN POST ROUTE', questionId)
@@ -41,6 +41,19 @@ router.post('/:id/answers/new', csrfProtection, requireAuth, asyncHandler(async 
     await answer.save();
     res.redirect('/')
 }));
+
+
+router.get('/answers/edit/:id', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
+    const answerId = parseInt(req.params.id)
+    const answer = await db.Answer.findByPk(answerId)
+
+    console.log(answer);
+
+    res.render('edit-answer', {
+        content: answer.content,
+        csrfToken: req.csrfToken()
+    })
+}))
 
 
 

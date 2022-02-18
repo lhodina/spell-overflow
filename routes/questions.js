@@ -3,7 +3,7 @@ const router = express.Router();
 const { csrfProtection, asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
 const db = require("../db/models");
-const { User, Question } = db;
+const { User, Question, Answer } = db;
 const { requireAuth } = require('../auth');
 
 // may or may not need below:
@@ -16,18 +16,29 @@ const { requireAuth } = require('../auth');
 // };
 
 router.get('/questions/:id', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
-    const questionId = parseInt(req.params.id)
-    console.log('THIS IS QUESTIONNID', questionId)
-    console.log('THIS IS REQPARAMS', req.params)
-    console.log('THIS IS REQPARAMSID', req.params.id)
+    const id = parseInt(req.params.id)
+    //console.log('THIS IS QUESTIONNID', questionId)
+    //console.log('THIS IS REQPARAMS', req.params)
+    //console.log('THIS IS REQPARAMSID', req.params.id)
 
-    // const attractionId = parseInt(req.params.id, 10);
-    const specificQuestion = await db.Question.findByPk(questionId);
-    // console.log('THIS IS SPECIFIC QUESTION', specificQuestion)
+    
+    // console.log('before answers')
+    const answers = await db.Answer.findAll({
+        where: {
+            questionId: id
+        }
+    });
+    // console.log('THIS IS ANSWERSSSSS', answers)
 
+    const specificQuestion = await db.Question.findByPk(id);
+    // console.log('THIS IS QUESTIONSSSSS', specificQuestion)
+    
+    
+    
     res.render('question', {
         headline: specificQuestion.headline,
         content: specificQuestion.content,
+        answers,
         csrfToken: req.csrfToken()
     });
 }));
@@ -60,8 +71,8 @@ router.get('/questions/edit/:id', requireAuth, csrfProtection, asyncHandler(asyn
     const question = await db.Question.findByPk(questionId);
     //console.log("THIS IS QUESTION", question)
     res.render('edit-question', {
-        headline: '',
-        content: '',
+        headline: question.headline,
+        content: question.content,
         csrfToken: req.csrfToken()
     });
 }));

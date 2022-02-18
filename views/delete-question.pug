@@ -1,9 +1,10 @@
 extends layout.pug
 
+
+
 block content
-    form(action=`/question/delete/${questionId}` method='post')
+    form(action=`/questions/delete/${questionId}` method='post')
       input(type='hidden' name='_csrf' value=csrfToken)
-      +field("Title", "headline", 'want correct prefilled text here', "textarea")
-      +field("Ask a public question", "content", "", "textarea")
+
       button Delete Question
       a(href=`/question/${questionId}` role='button') Cancel
