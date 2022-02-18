@@ -57,8 +57,8 @@ app.use((req, res, next) => {
   next();
 })
 
-store.sync();
-// console.log("started app.js")
+//store.sync();
+
 
 
 app.use('/users', usersRouter);
