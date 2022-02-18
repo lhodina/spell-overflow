@@ -104,4 +104,13 @@ router.post('/questions/delete/:id(\\d+)', csrfProtection, asyncHandler(async (r
     res.redirect('/questions');
 }));
 
+// ******************
+router.delete('/questions/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+    const questionId = parseInt(req.params.id, 10);
+    const question = await db.Question.findByPk(questionId);
+    await question.destroy();
+
+    res.json({message: 'Success'})
+}));
+
 module.exports = router;

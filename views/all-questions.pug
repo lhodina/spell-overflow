@@ -1,12 +1,13 @@
 extends layout.pug
 
 block content
-    h1 test
+    h1= headline
+    p= content
     script(src="/javascripts/index.js" type="module")
-        each question in questions
-            div(id=`post-container-${question.id}`).post-box
-                p= question.content
-                if question.userId === user.id
-                    form(action=`/questions/delete/${questionId}` method='post')
-                        input(type='hidden' name='_csrf' value=csrfToken)
-                        button(id=question.id).delete-btn Delete
+    each question in questions
+        div(id=`post-container-${question.id}`).post-box
+            p= question.content
+            if question.userId === user.id
+                form(action=`/questions/delete/${questionId}` method='post')
+                    input(type='hidden' name='_csrf' value=csrfToken)
+                    button(id=question.id).delete-btn Delete
