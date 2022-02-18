@@ -59,9 +59,8 @@ app.use((req, res, next) => {
 
 //store.sync();
 
-
-
 app.use('/users', usersRouter);
+
 app.use(questionsRouter);
 
 app.use(answersRouter);

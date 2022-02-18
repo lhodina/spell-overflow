@@ -18,7 +18,7 @@ router.get('/questions', csrfProtection, asyncHandler(async (req, res) => {
 router.get('/questions/:id(\\d+)',  csrfProtection, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id)
     const specificQuestion = await db.Question.findByPk(questionId);
-    const answers = await db.Answer.findAll({ 
+    const answers = await db.Answer.findAll({
         where: {
             questionId
         }
@@ -87,7 +87,7 @@ router.get('/questions/delete/:id', requireAuth, csrfProtection, asyncHandler(as
 
 router.post('/questions/delete/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id, 10);
-    const answers = await db.Answer.findAll({ 
+    const answers = await db.Answer.findAll({
         where: {
             questionId
         }
@@ -99,7 +99,7 @@ router.post('/questions/delete/:id(\\d+)', csrfProtection, asyncHandler(async (r
             let answer = answers[i];
             answer.destroy();
         }
-    } 
+    }
     await question.destroy();
     res.redirect('/questions');
 }));
