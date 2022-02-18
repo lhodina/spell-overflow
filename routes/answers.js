@@ -76,8 +76,9 @@ router.get('/answers/delete/:id', csrfProtection, asyncHandler(async (req, res) 
 router.post('/answers/delete/:id', csrfProtection, asyncHandler(async (req, res) => {
     const answerId = parseInt(req.params.id, 10);
     const answer = await db.Answer.findByPk(answerId);
+    const questionId = answer.questionId
     await answer.destroy();
-    res.redirect(`/questions/${answerId}`);
+    res.redirect(`/questions/${questionId}`);
 }));
 
 /*
