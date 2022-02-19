@@ -16,30 +16,34 @@ router.get('/questions', csrfProtection, asyncHandler(async (req, res) => {
     res.render('all-questions', { questions, csrfToken: req.csrfToken() });
 }));
 
-router.get('/questions/:id(\\d+)',  csrfProtection, asyncHandler(async (req, res) => {
+router.get('/questions/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id)
-    
-    
-    const specificQuestion = await db.Question.findByPk(questionId);
-    const user = await db.User.findAll({
+
+
+    const specificQuestion = await db.Question.findByPk(questionId)
+    const specificUser = await db.User.findAll({
         where: {
             id: specificQuestion.userId
         }
     })
-    console.log('HELLO', user.firstName);
+    // console.log('SPECIFIC USER', specificUser)
+    // console.log("BEFORE FOR")
+    const thisUser = specificUser[0]
+    // console.log('USERNAME', thisUser.username)
+             
     const answers = await db.Answer.findAll({
-        where: {
-            questionId
-        }
-    })
+    where: {
+        questionId
+    }
+})
 
-    res.render('question', {
-        headline: specificQuestion.headline,
-        content: specificQuestion.content,
-        username: user.username,
-        answers,
-        csrfToken: req.csrfToken()
-    });
+res.render('question', {
+    headline: specificQuestion.headline,
+    content: specificQuestion.content,
+    username: thisUser.username,
+    answers,
+    csrfToken: req.csrfToken()
+});
 }));
 
 router.post('/questions/new', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
@@ -104,8 +108,8 @@ router.post('/questions/delete/:id(\\d+)', csrfProtection, asyncHandler(async (r
     });
     const question = await db.Question.findByPk(questionId);
 
-    if (answers.length > 0){
-        for (let i = 0; i < answers.length; i++){
+    if (answers.length > 0) {
+        for (let i = 0; i < answers.length; i++) {
             let answer = answers[i];
             answer.destroy();
         }
@@ -120,7 +124,7 @@ router.delete('/questions/:id(\\d+)', requireAuth, asyncHandler(async (req, res)
     const question = await db.Question.findByPk(questionId);
     await question.destroy();
 
-    res.json({message: 'Success'})
+    res.json({ message: 'Success' })
 }));
 
 module.exports = router;

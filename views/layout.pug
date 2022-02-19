@@ -26,6 +26,8 @@ html
        
   if locals.authenticated
     h1 Welcome #{user.firstName}
+  else 
+    h2 Not logged in
     
   //- else
   //-   ul 
