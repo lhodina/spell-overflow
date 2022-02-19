@@ -117,7 +117,7 @@ module.exports = {
       returning: true
     });
 
-    return queryInterface.bulkInsert('Questions', [
+    const questions = await queryInterface.bulkInsert('Questions', [
       {
         headline: "how do i turn my gold nuggets into tangerines?",
         content: "any alchemist on this site? i want to turn my gold nuggest into tangerines. i have way too many gold nuggets.",
@@ -239,9 +239,93 @@ module.exports = {
         updatedAt: new Date()
       },
     ], {});
+
+    return queryInterface.bulkInsert('Answers', [
+      {
+        content: "Man why would you turn gold into tangerines? Give the gold to me you fool",
+        picture: "",
+        userId: users[1].id,
+        questionId: questions[0].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        content: "i do what i want with my gold you nerd",
+        picture: "",
+        userId: users[0].id,
+        questionId: questions[0].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        content: "",
+        picture: "",
+        userId: users[0].id,
+        questionId: questions[0].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        content: "",
+        picture: "",
+        userId: users[0].id,
+        questionId: questions[0].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        content: "",
+        picture: "",
+        userId: users[0].id,
+        questionId: questions[0].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        content: "",
+        picture: "",
+        userId: users[0].id,
+        questionId: questions[0].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        content: "",
+        picture: "",
+        userId: users[0].id,
+        questionId: questions[0].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        content: "",
+        picture: "",
+        userId: users[0].id,
+        questionId: questions[0].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        content: "",
+        picture: "",
+        userId: users[0].id,
+        questionId: questions[0].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        content: "",
+        picture: "",
+        userId: users[0].id,
+        questionId: questions[0].id,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+    ], {});
   },
 
   down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete('Answers', null, {});
     await queryInterface.bulkDelete('Questions', null, {});
     return queryInterface.bulkDelete('Users', null, {});
   }
