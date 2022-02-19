@@ -4,11 +4,11 @@ h1 {
 
 h2 {
     font-size: 24px;
-    color: rgb(165, 0, 0);
+    color: black;
 }
 
 p {
-    color: rgb(252, 185, 0);
+    color: hsl(206deg 100% 40%);
     font-size: 18px;
 }
 
