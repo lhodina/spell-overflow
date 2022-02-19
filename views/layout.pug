@@ -2,14 +2,35 @@ doctype html
 html
   head
       block head
-        title="Express Starter App"
+        title="Spell Overflow"
         link(rel='stylesheet' href='/stylesheets/reset.css')
   body
+  div(id= 'navbarDiv')
+    nav(id='navbar')
+      ul(id= 'navbarUl') 
+        li(id= 'navbarLi') 
+          a(href='/') Home 
+        li(id= 'navbarLi') 
+          a(href='/questions/new') New Question 
+        li(id= 'navbarLi') 
+          a(href='/') About Us 
+        if !locals.authenticated
+          li(id= 'navbarLi')
+            a(href='/users/login') Log In 
+          li(id= 'navbarLi') 
+            a(href='/users/signup') Sign Up
+        else 
+          li(id= 'navbarLi')
+            form(action='/users/logout' method='post')
+              button(id= 'logOutButton') Log Out
+       
   if locals.authenticated
     h1 Welcome #{user.firstName}
-    form(action='/users/logout' method='post')
-      button Logout
-  else
-    a(href='/users/login') Login
-    a(href='/users/signup') Sign up
+    
+  //- else
+  //-   ul 
+  //-     li(id= 'navbarLi') 
+  //-       a(href='/users/login') Login
+  //-     li(id= 'navbarLi')
+  //-       a(href='/users/signup') Sign up
   block content
