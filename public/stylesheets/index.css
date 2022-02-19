@@ -1,3 +1,28 @@
 h1 {
     color: #555555;
 }
+
+h2 {
+    font-size: 24px;
+    color: rgb(165, 0, 0);
+}
+
+p {
+    color: rgb(252, 185, 0);
+    font-size: 18px;
+}
+
+img {
+    max-height: 100px;
+    max-width: 175px;
+}
+
+.questions-area {
+    display: flex;
+    justify-content: center;
+}
+
+.question {
+    border-top: 1px solid rgb(211, 211, 211);
+    margin: 20px 20px;
+}
