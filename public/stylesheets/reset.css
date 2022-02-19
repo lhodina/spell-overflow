@@ -51,7 +51,6 @@ body{
 
 #navbarDiv{
   width: 100%;
-  /* border: 3px red solid; */
   background-color: hsl(180deg 8% 97%);
   position: fixed;
   top: 0;
@@ -63,11 +62,8 @@ body{
 }
 
 #navbarUl {
-  /* padding-right: 40px; */
-  
   list-style-type: none;
   display: grid;
-  /* grid-template-areas: "a b c d e"; */
   grid-template-columns: 1fr 1fr 3fr 1fr 1fr;
   justify-items: center;
   align-items: center;
@@ -114,8 +110,5 @@ body{
   background-color: hsl(0deg 0% 100%);
   box-shadow: none;
   color: hsl(210deg 8% 25%);
-  border-radius: 3px;
-  /* width: 150%; */
-  /* grid-area: c; */
-  
+  border-radius: 3px;  
 }

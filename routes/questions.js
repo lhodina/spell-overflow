@@ -24,6 +24,7 @@ router.get('/questions/:id(\\d+)', csrfProtection, asyncHandler(async (req, res)
             id: specificQuestion.userId
         }
     })
+    console.log(specificQuestion)
     const thisUser = specificUser[0]
     const answers = await db.Answer.findAll({
         where: {
@@ -33,6 +34,7 @@ router.get('/questions/:id(\\d+)', csrfProtection, asyncHandler(async (req, res)
     console.log('THIS IS ANSWERS', answers)
 
     res.render('question', {
+        specificQuestion,
         headline: specificQuestion.headline,
         content: specificQuestion.content,
         username: thisUser.username,
@@ -118,6 +120,15 @@ router.delete('/questions/:id(\\d+)', requireAuth, asyncHandler(async (req, res)
     const questionId = parseInt(req.params.id, 10);
     const question = await db.Question.findByPk(questionId);
     await question.destroy();
+
+    res.json({ message: 'Success' })
+}));
+
+router.delete('/questions/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+    const questionId = parseInt(req.params.id, 10);
+    const question = await db.Question.findByPk(questionId);
+    await question.destroy();
+    res.redirect(`/questions`);
 
     res.json({ message: 'Success' })
 }));

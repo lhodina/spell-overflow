@@ -3,7 +3,9 @@ extends layout.pug
 include utils.pug
 
 block content
+    h2= question.headline
+    p= question.content
     form(action=`/questions/${questionId}/answers/new` method="post")
         input(type="hidden" name="_csrf" value=csrfToken)
-        +field("content", "content", "", "textarea")
+        +field("Answer:", "content", "", "textarea")
         button Submit

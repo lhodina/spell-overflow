@@ -6,14 +6,17 @@ block content
     h1= headline
     p= content
     h3= username
-        h2 Answers
-            script(src="/javascripts/index.js" type="module")
-            input(type='hidden' name='_csrf' value=csrfToken)
-            each answer in answers
-                div(id=`post-container-${answer.id}`).post-box
-                    p= answer.content
-                    if user
-                        if answer.userId === user.id
-                            form(action=`/answers/delete/${answerId}` method='post')
-                                input(type='hidden' name='_csrf' value=csrfToken)
-                                button(id=answer.id).delete-btn Delete
+    a(href=`${specificQuestion.id}/answers/new`) Answer
+    h2 Answers
+        script(src="/javascripts/index.js" type="module")
+        input(type='hidden' name='_csrf' value=csrfToken)
+        each answer in answers
+            div(id=`post-container-${answer.id}`).post-box
+                p= answer.content
+                if user
+                    if answer.userId === user.id
+                        form(action=`/answers/delete/${answerId}` method='post')
+                            input(type='hidden' name='_csrf' value=csrfToken)
+                            button(id=answer.id).delete-btn Delete
+                        
+                    

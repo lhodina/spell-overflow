@@ -46,3 +46,4 @@ for (let i = 0; i < deleteQuesBtns.length; i++) {
         };
     });
 };
+
