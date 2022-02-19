@@ -191,41 +191,41 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        headline: "how oldz due u have 2 be 2 practiz magik?",
-        content: "im 9 n i wanna practiz magik. dis me in pic.",
-        picture: "https://img.nbc.com/sites/nbcunbc/files/images/2021/6/22/210622_4384247_9_Year_Old_Magician_The_Amazing_Shoji_Delive.jpg",
+        headline: "My wife gets mad when I borrow her wand without asking. AITA?",
+        content: "My wife asks me to keep my wand on the other side of the room at night because sometimes it makes unexplained noises. So sometimes I use hers cause I need to warm up my midnight snack.",
+        picture: "https://mediaproxy.salon.com/width/1200/https://media.salon.com/2011/01/fat_man_a_cautionary_tale.jpg",
         userId: users[7].id,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        headline: "how oldz due u have 2 be 2 practiz magik?",
-        content: "im 9 n i wanna practiz magik. dis me in pic.",
-        picture: "https://img.nbc.com/sites/nbcunbc/files/images/2021/6/22/210622_4384247_9_Year_Old_Magician_The_Amazing_Shoji_Delive.jpg",
+        headline: "Best gear to get my 13 Y.O. for setting up her first alchemy lab??",
+        content: "I'm trying to select the right glass, flasks, beakers, potions satchel, etc., and looking for alternatives to just buying a generic starter kit from Bartlebie's Elixer's",
+        picture: "https://i.pinimg.com/originals/66/e6/f5/66e6f5dadd22eafc07c3ecd63ec31d40.jpg",
         userId: users[8].id,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        headline: "how oldz due u have 2 be 2 practiz magik?",
-        content: "im 9 n i wanna practiz magik. dis me in pic.",
-        picture: "https://img.nbc.com/sites/nbcunbc/files/images/2021/6/22/210622_4384247_9_Year_Old_Magician_The_Amazing_Shoji_Delive.jpg",
+        headline: "How to set up voodoo doll to teach my busness rival lesson?!",
+        content: "My busness rival very bad man giving bad service to customer. I try to link my doll to him to teach him lesson. What is best technic plz?",
+        picture: "https://cdn.dribbble.com/users/1779070/screenshots/3953423/media/74924207b3cd4b6ed618c7f8dbe35259.jpg?compress=1&resize=400x300",
         userId: users[9].id,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        headline: "how oldz due u have 2 be 2 practiz magik?",
-        content: "im 9 n i wanna practiz magik. dis me in pic.",
-        picture: "https://img.nbc.com/sites/nbcunbc/files/images/2021/6/22/210622_4384247_9_Year_Old_Magician_The_Amazing_Shoji_Delive.jpg",
+        headline: "Most potent healing ingredients I can forage for in the Dallas/Fort Worth area?",
+        content: "I'm starting my own line of healing potions in Texas, and I was just wondering if y'all could point me to a map or other resources for sagewood, angel's breath, goldenroot, etc?",
+        picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkJ0GxOAViX0doMP__n97GCE8vsgKcEna1Xw&usqp=CAU",
         userId: users[9].id,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        headline: "how oldz due u have 2 be 2 practiz magik?",
-        content: "im 9 n i wanna practiz magik. dis me in pic.",
-        picture: "https://img.nbc.com/sites/nbcunbc/files/images/2021/6/22/210622_4384247_9_Year_Old_Magician_The_Amazing_Shoji_Delive.jpg",
+        headline: "Can you use an ancient sword enchantment on gardening tools?",
+        content: "I'm looking to apply the same enchantment typically used for increasing damage on a Jarl's broadsword to my rake, sheers, and gardening fork. Anyone have experience with this?",
+        picture: "https://i.pinimg.com/200x/dd/81/8e/dd818e47317ce6983851c89a648f49b1.jpg",
         userId: users[9].id,
         createdAt: new Date(),
         updatedAt: new Date()
