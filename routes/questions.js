@@ -18,32 +18,27 @@ router.get('/questions', csrfProtection, asyncHandler(async (req, res) => {
 
 router.get('/questions/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
     const questionId = parseInt(req.params.id)
-
-
     const specificQuestion = await db.Question.findByPk(questionId)
     const specificUser = await db.User.findAll({
         where: {
             id: specificQuestion.userId
         }
     })
-    // console.log('SPECIFIC USER', specificUser)
-    // console.log("BEFORE FOR")
     const thisUser = specificUser[0]
-    // console.log('USERNAME', thisUser.username)
-             
     const answers = await db.Answer.findAll({
-    where: {
-        questionId
-    }
-})
+        where: {
+            questionId
+        }
+    })
+    console.log('THIS IS ANSWERS', answers)
 
-res.render('question', {
-    headline: specificQuestion.headline,
-    content: specificQuestion.content,
-    username: thisUser.username,
-    answers,
-    csrfToken: req.csrfToken()
-});
+    res.render('question', {
+        headline: specificQuestion.headline,
+        content: specificQuestion.content,
+        username: thisUser.username,
+        answers,
+        csrfToken: req.csrfToken()
+    });
 }));
 
 router.post('/questions/new', requireAuth, csrfProtection, asyncHandler(async (req, res) => {

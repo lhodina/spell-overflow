@@ -23,11 +23,12 @@ html
           li(id= 'navbarLi')
             form(action='/users/logout' method='post')
               button(id= 'logOutButton') Log Out
-       
-  if locals.authenticated
-    h1 Welcome #{user.firstName}
-  else 
-    h2 Not logged in
+
+  div(id= 'welcomeText')     
+    if locals.authenticated
+      h1 Welcome #{user.firstName}
+    else 
+      h2 Not logged in
     
   //- else
   //-   ul 
