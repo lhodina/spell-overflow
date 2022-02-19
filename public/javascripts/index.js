@@ -4,6 +4,7 @@ console.log("hello Stan!!! 1234567890 from javascript!")
 
 const deleteBtns = document.querySelectorAll('.delete-btn')
 
+
 for (let i = 0; i < deleteBtns.length; i++) {
     const btn = deleteBtns[i];
 

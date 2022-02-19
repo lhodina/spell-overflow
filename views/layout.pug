@@ -3,32 +3,40 @@ html
   head
       block head
         title="Spell Overflow"
-        link(rel='stylesheet' href='/stylesheets/reset.css')
+        //-script(src="https://kit.fontawesome.com/5b77522559.js" crossorigin="anonymous")
+        link(rel= 'stylesheet' href='/stylesheets/reset.css')
+        link(rel= 'stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css")
   body
   div(id= 'navbarDiv')
-    nav(id='navbar')
-      ul(id= 'navbarUl') 
+    //- nav(id='navbar')
+    ul(id= 'navbarUl') 
+      //- li(id= 'navbarLi')
+      //-   a(href='/')
+      //-    img(src='https://cdn-icons-png.flaticon.com/512/12/12365.png')   
+      li(id= 'navbarLi')
+        a(href='/') Home 
+      //- li(id= 'navbarLi') 
+      //-   a(href='/questions/new') New Question 
+      li(id= 'navbarLi') 
+        a(href='/') About Us 
+      li(id= 'search') 
+        input(id='searchBar' type='text' placeholder= 'Search')
+      if !locals.authenticated
+        li(id= 'navbarLi')
+          a(id= 'logInButton' href='/users/login') Log In 
         li(id= 'navbarLi') 
-          a(href='/') Home 
-        li(id= 'navbarLi') 
-          a(href='/questions/new') New Question 
-        li(id= 'navbarLi') 
-          a(href='/') About Us 
-        if !locals.authenticated
-          li(id= 'navbarLi')
-            a(href='/users/login') Log In 
-          li(id= 'navbarLi') 
-            a(href='/users/signup') Sign Up
-        else 
-          li(id= 'navbarLi')
-            form(action='/users/logout' method='post')
-              button(id= 'logOutButton') Log Out
+          a(id = 'signUpButton' href='/users/signup') Sign Up
+      else 
+        li(id= 'navbarLi')
+          form(action='/users/logout' method='post')
+            button(id= 'logOutButton') Log Out
 
   div(id= 'welcomeText')     
     if locals.authenticated
       h1 Welcome #{user.firstName}
-    else 
-      h2 Not logged in
+      div(id= 'askQuestion')
+        a(id= 'newQuestionButton' href='/questions/new') Ask Question
+    
     
   //- else
   //-   ul 
