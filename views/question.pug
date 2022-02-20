@@ -3,6 +3,8 @@ extends layout.pug
 include utils.pug
 
 block content
+
+ div(class="containerall")
     h1= headline
     p= content
     h3= username
@@ -18,5 +20,3 @@ block content
                         form(action=`/answers/delete/${answerId}` method='post')
                             input(type='hidden' name='_csrf' value=csrfToken)
                             button(id=answer.id).delete-btn Delete
-                        
-                    
