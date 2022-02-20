@@ -13,7 +13,8 @@ block content
     h2 Top Questions
       each question in questions
         div(class="question")
-          p= question.headline
+          a(href=`/questions/${question.id}`)= question.headline
+            //- p= question.headline
           //- if question.picture
           //-   img(src = `${question.picture}`)
 
