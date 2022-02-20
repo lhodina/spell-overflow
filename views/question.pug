@@ -7,11 +7,16 @@ block content
         h1= headline
         p= content
         h3= username
+        if user
+            if specificQuestion.userId === user.id
+                a(href=`/questions/edit/${specificQuestion.id}` id= 'deleteButton') edit
+                a(href=`/questions/delete/${specificQuestion.id}` id= 'deleteButton') Delete
         h2 Answers
             br
             script(src="/javascripts/index.js" type="module")
             br
             input(type='hidden' name='_csrf' value=csrfToken)
+            
             a(id='newAnswerButton' href=`${specificQuestion.id}/answers/new`) New Answer
             each answer in answers
                 div(id=`post-container-${answer.id}`).post-box
