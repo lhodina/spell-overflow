@@ -8,5 +8,5 @@ block content
     form(action=`/questions/${questionId}/answers/new` method="post")
         input(type="hidden" name="_csrf" value=csrfToken)
         +field("Answer:", "content", "", "textarea")
-        button Submit
-        a(href=`/questions/${question.id}` role='button') Cancel
+        button(id="submit-answer-button") Submit
+        a(href=`/questions/${question.id}` role='button' id='cancel-button') Cancel
