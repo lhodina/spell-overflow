@@ -1,6 +1,6 @@
 extends layout.pug
 
-include utils.pug
+//- include utils.pug
 
 append head
   //- add page specific styles by appending to the head
@@ -10,7 +10,11 @@ block content
     div
         form(id="question-form" action="/questions/new" method="post")
             input(type="hidden" name="_csrf" value=csrfToken)
-            +field("Title", "headline", "", "textarea")
-            +field("Ask a public question", "content", "", "textarea")
+            div(id="question-headline")
+                label Headline
+                textarea(id="headline" name="headline")
+            div(id="question-textarea")
+                label Ask a Public question
+                textarea(id="public-question" name="content")
             button Post your question
-        p Hotdog
+        //- p Testing testing Hotdog Sassafrass Bealzubub Coniferous
