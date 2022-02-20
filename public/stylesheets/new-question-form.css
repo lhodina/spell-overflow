@@ -1,23 +1,18 @@
 div {
     display: flex;
-    /* justify-content: center; */
+    margin: 20px;
+
 }
 
 p {
-    /* color: hsl(206deg 100% 40%); */
     color: hsl(206deg 100% 40%);
     font-size: 18px;
 }
 
-/* div {
-    font-family: 'Courier New', Courier, monospace;
-} */
 
 #question-form {
     display: flex;
-    /* justify-content: center; */
     flex-wrap: wrap;
-    /* color: green; */
     max-width: 70%;
     border: 1px solid lightgray;
 }
@@ -52,7 +47,7 @@ label {
     margin: 5px;
 }
 
-button {
+#post-button {
     width: 100px;
     background-color: #0a95ff;
     margin: 10px;
@@ -62,6 +57,6 @@ button {
 }
 
 
-button:hover {
+#post-button:hover {
     background-color: #0774c7;
 }
