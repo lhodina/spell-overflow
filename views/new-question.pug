@@ -11,10 +11,12 @@ block content
         form(id="question-form" action="/questions/new" method="post")
             input(type="hidden" name="_csrf" value=csrfToken)
             div(id="question-headline")
-                label Headline
+                label Title
+                    p Be specific and imagine you’re asking a question to another person
                 textarea(id="headline" name="headline")
             div(id="question-textarea")
-                label Ask a public question
+                label Body
+                    p Include all the information someone would need to answer your question
                 textarea(id="public-question" name="content")
             button(id="post-button") Post your question
         //- p Testing testing Hotdog Sassafrass Bealzubub Coniferous

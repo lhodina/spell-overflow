@@ -5,8 +5,8 @@ div {
 }
 
 p {
-    color: hsl(206deg 100% 40%);
-    font-size: 18px;
+    margin: 5px 0px 5px 0px;
+    font-size: 12px;
 }
 
 
@@ -20,6 +20,7 @@ p {
 
 label {
     color: black;
+    margin: 5px;
 }
 
 #question-headline {
