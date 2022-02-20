@@ -7,10 +7,14 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  h1 Welcome to Spell Overflow
-    each question in questions
-      a(href=`/questions/${question.id}`)= question.headline
-      if question.picture
-        img(src = `${question.picture}`)
+  h1= title
+
+  div(class="questions-area")
+    h2 Top Questions
+      each question in questions
+        div(class="question")
+          p= question.headline
+          //- if question.picture
+          //-   img(src = `${question.picture}`)
 
       //- still need button/a-tag for 'Ask Question'
