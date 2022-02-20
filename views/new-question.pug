@@ -2,9 +2,15 @@ extends layout.pug
 
 include utils.pug
 
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/new-question-form.css")
+
 block content
-    form(action="/questions/new" method="post")
-        input(type="hidden" name="_csrf" value=csrfToken)
-        +field("Title", "headline", "", "textarea")
-        +field("Ask a public question", "content", "", "textarea")
-        button Post your question
+    div
+        form(action="/questions/new" method="post")
+            input(type="hidden" name="_csrf" value=csrfToken)
+            +field("Title", "headline", "", "textarea")
+            +field("Ask a public question", "content", "", "textarea")
+            button Post your question
+        p Hotdog
