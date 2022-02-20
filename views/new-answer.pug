@@ -1,12 +1,23 @@
 extends layout.pug
 
 include utils.pug
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/new-answer.css")
 
 block content
-    h2= question.headline
-    p= question.content
-    form(action=`/questions/${questionId}/answers/new` method="post")
-        input(type="hidden" name="_csrf" value=csrfToken)
-        +field("Answer:", "content", "", "textarea")
-        button(id="submit-answer-button") Submit
-        a(href=`/questions/${question.id}` role='button' id='cancel-button') Cancel
+    div(id='container')
+        div(id='headline')
+            h2= question.headline
+        div(id='content')
+            p= question.content
+        div(id='answerForm')
+            form(action=`/questions/${questionId}/answers/new` method="post")
+                input(type="hidden" name="_csrf" value=csrfToken)
+                div(id='answerField')
+                    label Answer: 
+                    br
+                    textarea(id='answerContent' name='content')
+                button(id="submit-answer-button") Submit
+                a(href=`/questions/${question.id}` role='button' id='cancel-button') Cancel
+
