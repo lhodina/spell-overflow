@@ -7,10 +7,12 @@ block content
         h1= headline
         p= content
         h3= username
-        a(href=`${specificQuestion.id}/answers/new`) Answer
         h2 Answers
+            br
             script(src="/javascripts/index.js" type="module")
+            br
             input(type='hidden' name='_csrf' value=csrfToken)
+            a(id='newAnswerButton' href=`${specificQuestion.id}/answers/new`) New Answer
             each answer in answers
                 div(id=`post-container-${answer.id}`).post-box
                     p= answer.content
