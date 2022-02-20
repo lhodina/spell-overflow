@@ -9,3 +9,4 @@ block content
         input(type="hidden" name="_csrf" value=csrfToken)
         +field("Answer:", "content", "", "textarea")
         button Submit
+        a(href=`/questions/${question.id}` role='button') Cancel
