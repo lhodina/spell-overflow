@@ -6,8 +6,10 @@ block content
     script(src="/javascripts/index.js" type="module")
     each question in questions
         div(id=`post-container-${question.id}`).post-box
+            a(href=`/questions/${question.id}`)= question.headline
             p= question.content
-            if question.userId === user.id
-                form(action=`/questions/delete/${questionId}` method='post')
-                    input(type='hidden' name='_csrf' value=csrfToken)
-                    button(id=question.id).delete-btn Delete
+                if user
+                    if question.userId === user.id
+                        form(action=`/questions/delete/${questionId}` method='post')
+                            input(type='hidden' name='_csrf' value=csrfToken)
+                            button(id=question.id).delete-btn Delete

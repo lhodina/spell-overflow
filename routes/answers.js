@@ -11,6 +11,7 @@ router.get('/questions/:id(\\d+)/answers/new', requireAuth, csrfProtection, asyn
     const question = await db.Question.findByPk(questionId);
     res.render('new-answer', {
         questionId,
+        question,
         csrfToken: req.csrfToken(),
     });
 }));

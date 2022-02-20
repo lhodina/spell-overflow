@@ -7,11 +7,9 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  h1= title
-  p Welcome to your Project Skeleton
+  h1 Welcome to Spell Overflow
     each question in questions
-      p= question.headline
-      
+      a(href=`/questions/${question.id}`)= question.headline
       if question.picture
         img(src = `${question.picture}`)
 
