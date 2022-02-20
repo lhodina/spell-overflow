@@ -16,6 +16,8 @@ block content
                     p= answer.content
                     if user
                         if answer.userId === user.id
+                            a(href=`/answers/edit/${answer.id}`)
+                                button Edit
                             form(action=`/answers/delete/${answerId}` method='post')
                                 input(type='hidden' name='_csrf' value=csrfToken)
                                 button(id=answer.id).delete-btn Delete
