@@ -2,3 +2,29 @@ h1 {
     color: #555555;
 }
 
+h2 {
+    font-size: 24px;
+    color: black;
+}
+
+a {
+    color: hsl(206deg 100% 40%);
+    font-size: 17px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+img {
+    max-height: 100px;
+    max-width: 175px;
+}
+
+.questions-area {
+    display: flex;
+    justify-content: center;
+}
+
+.question {
+    border-top: 1px solid rgb(211, 211, 211);
+    margin: 20px 20px;
+}
