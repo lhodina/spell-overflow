@@ -18,6 +18,6 @@ block content
                     label Answer: 
                     br
                     textarea(id='answerContent' name='content')
-                //- +field("Answer:", "content", "", "textarea")(id= 'formField')
-                button Submit
-                a(href=`/questions/${question.id}` role='button') Cancel
+                button(id="submit-answer-button") Submit
+                a(href=`/questions/${question.id}` role='button' id='cancel-button') Cancel
+
