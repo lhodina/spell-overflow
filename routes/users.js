@@ -148,4 +148,11 @@ router.post('/logout', (req, res) => {
     })
 });
 
+router.get('/aboutus', csrfProtection, (req, res) => {
+  res.render('about-us', {
+    title: 'Aboutus',
+    csrfToken: req.csrfToken()
+  })
+})
+
 module.exports = router;
