@@ -1,9 +1,10 @@
 extends layout.pug
 
 block content
-
+  div(class="containerall")
     h1= headline
     p= content
+    h3= username
     form(action=`/questions/delete/${questionId}` method='post')
       input(type='hidden' name='_csrf' value=csrfToken)
       button Delete Question

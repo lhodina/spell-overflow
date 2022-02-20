@@ -1,11 +1,32 @@
 extends layout.pug
 
 include utils.pug
-
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/edit-answer.css")
 block content
-    form(action=`/questions/edit/${questionId}` method="post")
-        input(type='hidden' name='_csrf' value=csrfToken)
-        +field("Title", "headline", headline, "textarea") 
-        +field("Ask a public question", "content", content, "textarea") 
-        button Confirm Edit 
+    div(id='container')
+        div(id='headline')
+            h2 Title: #{questionEdit.headline} 
+        div(id='content')
+            p Current Body: #{questionEdit.content}
+            //- p= question.content
+        div(id='editForm')
+            form(action=`/questions/edit/${questionId}` method="post")
+                input(type="hidden" name="_csrf" value=csrfToken)
+                //- div(id='editField')
+                //-     label Edit: 
+                //-     br
+                //-     textarea(id='editTitleField' name='content') #{questionEdit.headline}
+                div(id='editField')
+                    label Edit Body: 
+                    br
+                    textarea(id='editContent' name='content') #{questionEdit.content}
+                //- +field("Content", "content", content, "textarea")
+                button Confirm Edit Answer
+    //- form(action=`/questions/edit/${questionId}` method="post")
+    //-     input(type='hidden' name='_csrf' value=csrfToken)
+    //-     +field("Title", "headline", headline, "textarea") 
+    //-     +field("Ask a public question", "content", content, "textarea") 
+    //-     button Confirm Edit 
 

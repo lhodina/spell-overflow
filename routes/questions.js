@@ -63,6 +63,7 @@ router.get('/questions/edit/:id(\\d+)', requireAuth, csrfProtection, asyncHandle
     const questionEdit = await db.Question.findByPk(questionId);
 
     res.render('edit-question', {
+        questionEdit,
         headline: questionEdit.headline,
         content: questionEdit.content,
         questionId,
