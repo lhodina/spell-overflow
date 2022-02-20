@@ -8,7 +8,7 @@ append head
 
 block content
     div
-        form(action="/questions/new" method="post")
+        form(id="question-form" action="/questions/new" method="post")
             input(type="hidden" name="_csrf" value=csrfToken)
             +field("Title", "headline", "", "textarea")
             +field("Ask a public question", "content", "", "textarea")
