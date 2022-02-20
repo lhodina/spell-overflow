@@ -36,11 +36,15 @@ router.post('/questions/:id(\\d+)/answers/new', csrfProtection, requireAuth, asy
 router.get('/answers/edit/:id(\\d+)', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
     const answerId = parseInt(req.params.id)
     const answer = await db.Answer.findByPk(answerId)
+    const questionId = answer.questionId
+    const question = await db.Question.findByPk(questionId)
 
     // console.log("--------------------", answer);
 
     res.render('edit-answer', {
+        question,
         answerId,
+        answer,
         content: answer.content,
         csrfToken: req.csrfToken()
     });
