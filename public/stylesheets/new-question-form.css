@@ -1,0 +1,63 @@
+div {
+    display: flex;
+    margin: 20px;
+
+}
+
+p {
+    margin: 5px 0px 5px 0px;
+    font-size: 12px;
+}
+
+
+#question-form {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 70%;
+    border: 1px solid lightgray;
+}
+
+
+label {
+    color: black;
+    margin: 5px;
+}
+
+#question-headline {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+    width: 95%;
+}
+
+#question-textarea {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+    width: 95%;
+}
+
+#headline {
+    width: 95%;
+    margin: 5px;
+}
+
+#public-question {
+    width: 95%;
+    height: 200px;
+    margin: 5px;
+}
+
+#post-button {
+    width: 100px;
+    background-color: #0a95ff;
+    margin: 10px;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+
+#post-button:hover {
+    background-color: #0774c7;
+}
