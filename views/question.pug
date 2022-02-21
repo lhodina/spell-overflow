@@ -7,6 +7,7 @@ block content
         h1= headline
         p= content
         h3= username
+        img(src=`${specificQuestion.picture}`)
         if user
             if specificQuestion.userId === user.id
                 a(href=`/questions/edit/${specificQuestion.id}` id= 'deleteButton') edit
@@ -16,11 +17,14 @@ block content
             script(src="/javascripts/index.js" type="module")
             br
             input(type='hidden' name='_csrf' value=csrfToken)
-            
+
             a(id='newAnswerButton' href=`${specificQuestion.id}/answers/new`) New Answer
+
             each answer in answers
                 div(id=`post-container-${answer.id}`).post-box
                     p= answer.content
+                    div
+                        img(src=`${answer.picture}`)
                     if user
                         if answer.userId === user.id
                             a(href=`/answers/edit/${answer.id}`)

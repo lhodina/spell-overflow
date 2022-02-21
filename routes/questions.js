@@ -55,7 +55,7 @@ router.post('/questions/new', requireAuth, csrfProtection, asyncHandler(async (r
         userId: res.locals.user.id,
     });
     await question.save();
-    res.redirect('/')
+    res.redirect('/questions')
 }));
 
 router.get('/questions/edit/:id(\\d+)', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
@@ -125,13 +125,13 @@ router.delete('/questions/:id(\\d+)', requireAuth, asyncHandler(async (req, res)
     res.json({ message: 'Success' })
 }));
 
-router.delete('/questions/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
-    const questionId = parseInt(req.params.id, 10);
-    const question = await db.Question.findByPk(questionId);
-    await question.destroy();
-    res.redirect(`/questions`);
+// router.delete('/questions/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
+//     const questionId = parseInt(req.params.id, 10);
+//     const question = await db.Question.findByPk(questionId);
+//     await question.destroy();
+//     res.redirect(`/questions`);
 
-    res.json({ message: 'Success' })
-}));
+//     res.json({ message: 'Success' })
+// }));
 
 module.exports = router;
