@@ -5,7 +5,11 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const { sequelize } = require('./db/models');
 const session = require('express-session');
+
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
+// set up session middleware
+const store = new SequelizeStore({ db: sequelize });
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const questionsRouter = require('./routes/questions');
@@ -26,8 +30,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(sessionSecret));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// set up session middleware
-const store = new SequelizeStore({ db: sequelize });
 
 app.use(
   session({
