@@ -61,6 +61,11 @@ body{
   margin: 0rem 18rem 0rem 20rem;
 }
 
+.containerall > img {
+  max-height: 300px;
+  margin: 30px;
+}
+
 .post-box {
   padding: 2rem 2rem 1rem 2rem;
   border-bottom: 1px solid black;
@@ -213,4 +218,3 @@ body{
 #cancel-button:hover {
   background-color: hsl(205deg 47% 42%);
 }
-
