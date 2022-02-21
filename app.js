@@ -59,7 +59,7 @@ app.use((req, res, next) => {
   next();
 })
 
-//store.sync();
+store.sync();
 
 app.use('/users', usersRouter);
 
