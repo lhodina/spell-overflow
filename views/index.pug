@@ -9,12 +9,21 @@ append head
 block content
   h1= title
 
-  div(class="questions-area")
-    h2 Top Questions
-      each question in questions
-        div(class="question")
-          a(href=`/questions/${question.id}`)= question.headline
-            //- p= question.headline
+  div(class="questions-area") 
+    div(id='header')   
+      h1  Top Questions
+    div(id= 'askQuestion')
+      a(id= 'newQuestionButton' href='/questions/new') Ask Question
+  each question in questions
+    div(class="question")
+      div(id='inner-question-bullets')
+        p= 'test'
+        p= 'test'
+        p= 'test'
+      div(id='inner-question-headline')
+        a(href=`/questions/${question.id}`)= question.headline
+
+        //- p= question.headline
           //- if question.picture
           //-   img(src = `${question.picture}`)
 

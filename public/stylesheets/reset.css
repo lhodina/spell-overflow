@@ -6,9 +6,10 @@ body{
 #welcomeText {
   display: flex;
   justify-content: space-between;
+  
   align-items: center;
-  margin-top: 60px;
-  max-width: 75%;
+  margin-top: 75px;
+  max-width: 50%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: auto;

@@ -33,11 +33,11 @@ html
           form(action='/users/logout' method='post')
             button(id= 'logOutButton') Log Out
 
-  div(id= 'welcomeText')     
-    if locals.authenticated
-      h1 Welcome #{user.firstName}
-      div(id= 'askQuestion')
-        a(id= 'newQuestionButton' href='/questions/new') Ask Question
+  //- div(id= 'welcomeText')     
+  //-   if locals.authenticated
+  //-     h1  Top Questions
+  //-     div(id= 'askQuestion')
+  //-       a(id= 'newQuestionButton' href='/questions/new') Ask Question
     
     
   //- else
