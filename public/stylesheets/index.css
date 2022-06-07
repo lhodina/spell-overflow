@@ -47,7 +47,7 @@ img {
 .question {
     border-top: 1px solid rgb(211, 211, 211);
     border-bottom: 1px solid rgb(211, 211, 211);
-    margin: 20px 20px;
+    /* margin: 20px 20px; */
     max-width: 50%;
     margin-left: auto;
     margin-right: auto;
@@ -60,6 +60,8 @@ img {
 #inner-question-bullets{
     display: flex;
     flex-direction: column;
+    margin:0;
+    
 }
 #inner-question-headline{
     display: flex;

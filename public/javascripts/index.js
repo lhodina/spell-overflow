@@ -1,6 +1,6 @@
 // window.addEventListener("load", (event) => {
 // });
-console.log("hello Stan!!! 1234567890 from javascript!")
+
 
 const deleteBtns = document.querySelectorAll('.delete-btn')
 

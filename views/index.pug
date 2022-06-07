@@ -17,11 +17,11 @@ block content
   each question in questions
     div(class="question")
       div(id='inner-question-bullets')
-        p= 'test'
-        p= 'test'
-        p= 'test'
+        p= 'filler'
       div(id='inner-question-headline')
         a(href=`/questions/${question.id}`)= question.headline
+      div(id='inner-question-user')
+        p=counting
 
         //- p= question.headline
           //- if question.picture
