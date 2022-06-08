@@ -1,9 +1,9 @@
 extends layout.pug
 
 include utils.pug
-append head
-  //- add page specific styles by appending to the head
-  link(rel="stylesheet" href="/stylesheets/login.css")
+//- append head
+//-   //- add page specific styles by appending to the head
+//-   link(rel="stylesheet" href="/stylesheets/login.css")
 
 block content
     div(id= 'form-container')
@@ -25,6 +25,6 @@ block content
                             input(type="hidden" name="_csrf" value=csrfToken)
                             input(type="hidden" name="email" value="demo@demo.com")
                             input(type="hidden" name="password" value="password")
-                            button(id='demo-button') Demo
+                            button(id='demo-button' type='submit') Demo
             div(id='sign-up-link')
                 a(href='/users/signup') Don't have an account?

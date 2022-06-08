@@ -54,14 +54,12 @@ router.get('/', csrfProtection, asyncHandler(async (req, res) => {
   // //console.log(correspond())
 
 
-
-
-
   let userId = 0;
   if (req.session.user) {
       userId = req.session.user.userId;
   }
   res.render('index', { questions, userId, csrfToken: req.csrfToken() });
+  
 }));
 
 module.exports = router;

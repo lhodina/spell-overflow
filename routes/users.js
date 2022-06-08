@@ -93,7 +93,6 @@ router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, 
 }));
 
 router.get('/login', csrfProtection, (req, res) => {
-  console.log('\n\n\n\n\n', req.csrfToken())
   res.render('login', {
     title: 'Login',
     csrfToken: req.csrfToken()
@@ -112,7 +111,7 @@ const loginValidators = [
 
 
 router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, res) => {
-  
+  console.log('\n\n\n\n\n', 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '\n\n\n\n\n', req.csrfToken())
   const {
     email,
     password
@@ -141,7 +140,7 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
     title: 'Login',
     email,
     errors,
-    csrfToken: req.csrfToken(),
+    //csrfToken: req.csrfToken(),
   });
 }));
 
