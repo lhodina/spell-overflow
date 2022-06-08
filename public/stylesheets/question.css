@@ -1,9 +1,12 @@
 .containerall{
-    margin-top:3%;
+    margin-top:2%;
     max-width: 50%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: auto;
+    background-color:hsl(0deg 0% 100%);
+    padding: 10px;
+    border-left: 1px solid rgba(128, 128, 128, 0.288);
 }
 
 .containerall h1{

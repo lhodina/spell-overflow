@@ -1,5 +1,5 @@
 body{
-  background-color:hsl(210deg 8% 95%);
+  background-color:hsl(0deg 0% 100%);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -21,6 +21,7 @@ body{
 #navbarDiv{
   width: 100%;
   background-color: hsl(180deg 8% 97%);
+  border-top: 5px solid orange;
   position: fixed;
   top: 0;
   left: 0;
