@@ -1,10 +1,9 @@
 extends layout.pug
 
 include utils.pug
-//- append head
-//-   //- add page specific styles by appending to the head
-//-   link(rel="stylesheet" href="/stylesheets/login.css")
-
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/login.css")
 block content
     div(id= 'form-container')
         +validationErrorSummary(errors)
@@ -12,19 +11,19 @@ block content
             h1 Log In
             form(action="/users/login" method="post")
                 input(type="hidden" name="_csrf" value=csrfToken)
-             
                 +field("Email", "email", email)
-                
                 +field("Password", "password", '', 'password')
                 div 
                     div
                         input(id='cancel-button' type="submit" value="Log In")
-                    div(id='login-buttons')
-                        a(id='cancel-link' href='/') Cancel
-                        form(action="/users/login" method="post")
-                            input(type="hidden" name="_csrf" value=csrfToken)
-                            input(type="hidden" name="email" value="demo@demo.com")
-                            input(type="hidden" name="password" value="password")
-                            button(id='demo-button' type='submit') Demo
-            div(id='sign-up-link')
-                a(href='/users/signup') Don't have an account?
+                    
+            form(action="/users/login" method="post")
+                input(type="hidden" name="_csrf" value=csrfToken)
+                input(type="hidden" name="email" value="demo@aa.io")
+                input(type="hidden" name="password" value="password")
+                div(id='login-buttons')
+                    button(id='demo-button') Demo
+                div(id='sign-up-link')
+                    a(href='/users/signup') Don't have an account?
+                    
+        

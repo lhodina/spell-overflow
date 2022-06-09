@@ -140,7 +140,7 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
     title: 'Login',
     email,
     errors,
-    //csrfToken: req.csrfToken(),
+    csrfToken: req.csrfToken(),
   });
 }));
 

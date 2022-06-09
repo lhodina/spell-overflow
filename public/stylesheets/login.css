@@ -58,6 +58,7 @@
     padding:10px;
     margin-bottom: 10px;
     width: 30%;
+    height:100%;
     margin-right: auto;
     margin-bottom: auto;
   }
@@ -73,7 +74,7 @@
     color:white;
     margin-left:0;
     padding:10px;
-    width: 40%;
+    width: 100%;
   }
   #demo-button:hover{
       cursor: pointer;
@@ -82,6 +83,8 @@
 
   #login-buttons{
       display: flex;
+      flex-direction: column;
+
   }
   #sign-up-link{
       margin-top:5%;
