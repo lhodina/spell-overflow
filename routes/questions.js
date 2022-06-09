@@ -12,7 +12,7 @@ router.get('/questions/new', requireAuth, csrfProtection, (req, res) => {
 
 router.get('/questions', csrfProtection, asyncHandler(async (req, res) => {
     const questions = await db.Question.findAll();
-    
+
     res.render('all-questions', { questions, csrfToken: req.csrfToken() });
 }));
 
@@ -24,13 +24,26 @@ router.get('/questions/:id(\\d+)', csrfProtection, asyncHandler(async (req, res)
             id: specificQuestion.userId
         }
     })
-    
+
     const thisUser = specificUser[0]
     const answers = await db.Answer.findAll({
         where: {
             questionId
         }
     })
+    const allUsers = await db.User.findAll()
+    const allAnswers = Object.values(answers)
+    const getUsername =
+        newObj = {}
+        allAnswers.map(a => {
+            let x = a.userId
+            allUsers.forEach(u => {
+                if (x === u.id) {
+                    newObj[x] = u.username  
+                }
+            })
+            return newObj
+        })
     
 
     res.render('question', {
@@ -39,6 +52,7 @@ router.get('/questions/:id(\\d+)', csrfProtection, asyncHandler(async (req, res)
         content: specificQuestion.content,
         username: thisUser.username,
         answers,
+        getUsername,
         csrfToken: req.csrfToken()
     });
 }));

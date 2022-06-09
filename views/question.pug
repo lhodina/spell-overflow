@@ -29,6 +29,8 @@ block content
                     if answer.picture
                         div
                             img(src=`${answer.picture}`)
+                    p Answered by 
+                        i #{getUsername[answer.userId]}
                     if user
                         if answer.userId === user.id
                             a(href=`/answers/edit/${answer.id}`)
