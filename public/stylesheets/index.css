@@ -42,10 +42,12 @@ img {
 .questions-area {
     display: flex;
     justify-content: center;
+    border-bottom: 1px solid rgb(211, 211, 211);
+    padding:1%;
 }
 
 .question {
-    border-top: 1px solid rgb(211, 211, 211);
+    /* border-top: 1px solid rgb(211, 211, 211); */
     border-bottom: 1px solid rgb(211, 211, 211);
     /* margin: 20px 20px; */
     max-width: 50%;
@@ -53,7 +55,7 @@ img {
     margin-right: auto;
     margin-bottom: auto;
     display: flex;
-    /* padding:1%; */
+    padding:1%;
 
 }
 
