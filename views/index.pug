@@ -15,20 +15,17 @@ block content
     div(id= 'askQuestion')
       a(id= 'newQuestionButton' href='/questions/new') Ask Question
   each question in questions
-    div(class="question")
-      
-      div(id='inner-question-bullets')
-        if countAnswers[question.id]
-          p #{countAnswers[question.id]} answers
-        else 
-          p 0 answers
-      div(id='inner-question-headline')
-        a(href=`/questions/${question.id}`)= question.headline
-      div(id='inner-question-user')
-        
+    if countAnswers[question.id] > 1
+      div(class="question")
+        div(id='inner-question-bullets')
+            p #{countAnswers[question.id]} answers
+        div(id='inner-question-headline')
+          a(href=`/questions/${question.id}`)= question.headline
+        div(id='inner-question-user')
+          
 
-        //- p= question.headline
-          //- if question.picture
-          //-   img(src = `${question.picture}`)
+          //- p= question.headline
+            //- if question.picture
+            //-   img(src = `${question.picture}`)
 
-      //- still need button/a-tag for 'Ask Question'
+        //- still need button/a-tag for 'Ask Question'

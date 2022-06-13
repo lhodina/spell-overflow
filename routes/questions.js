@@ -12,8 +12,31 @@ router.get('/questions/new', requireAuth, csrfProtection, (req, res) => {
 
 router.get('/questions', csrfProtection, asyncHandler(async (req, res) => {
     const questions = await db.Question.findAll();
-
-    res.render('all-questions', { questions, csrfToken: req.csrfToken() });
+    const answers = await db.Answer.findAll();
+    //const array = Object.values(answers)
+    questionIdArray = []
+    answerIdArray = []
+    const eachQuestion = (array) => {
+      array.forEach(q => questionIdArray.push(q.id))
+      return questionIdArray
+    }
+  
+    const eachAnswer = (array) => {
+      array.forEach(a => answerIdArray.push(a.questionId))
+      return answerIdArray
+    }
+    const allAnswerIds = eachAnswer(Object.values(answers))
+    const allQuestionIds = eachQuestion(Object.values(questions))
+  
+    const countAnswers =
+      countObj = {}
+    allAnswerIds.forEach(a => {
+      if (allQuestionIds.includes(a)) {
+        countObj[a] = countObj[a] ? countObj[a] + 1 : 1;
+      } 
+      return countObj
+    })
+    res.render('all-questions', { questions, countAnswers, csrfToken: req.csrfToken() });
 }));
 
 router.get('/questions/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
@@ -35,7 +58,6 @@ router.get('/questions/:id(\\d+)', csrfProtection, asyncHandler(async (req, res)
     const allAnswers = Object.values(answers)
     const getUsername =
         newObj = {}
-    console.log('222', getUsername)
     allAnswers.map(a => {
         let x = a.userId
         allUsers.forEach(u => {
@@ -46,7 +68,6 @@ router.get('/questions/:id(\\d+)', csrfProtection, asyncHandler(async (req, res)
         return newObj
     })
 
-    console.log(getUsername)
 
     res.render('question', {
         specificQuestion,
@@ -60,11 +81,15 @@ router.get('/questions/:id(\\d+)', csrfProtection, asyncHandler(async (req, res)
 }));
 
 router.post('/questions/new', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
-    console.log(req.body)
     const {
         headline,
         content
     } = req.body;
+    const alertFunc = () => {
+        window.alert('too many')
+    }
+    
+    if (headline.length > 255) return alertFunc()
     const question = await db.Question.build({
         headline,
         content,

@@ -16,7 +16,16 @@ block content
         
         each question in questions
             div(id=`post-container-${question.id}`).post-box
+                
                 a(href=`/questions/${question.id}`)= question.headline
+                br
+                if !countAnswers[question.id]
+                    i 0 answers
+                else if countAnswers[question.id] > 1
+                    i #{countAnswers[question.id]} answers
+                else if countAnswers[question.id] = 1
+                    i #{countAnswers[question.id]} answer
+                
                 p= question.content
                     if user
                         if question.userId === user.id

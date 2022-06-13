@@ -34,17 +34,23 @@ div.questions-area{
     margin: 30px;
 }
 
-.post-box {
-    
+.post-box {  
     border-bottom: 1px solid rgb(211, 211, 211);
+    
 }
 
 .post-box>a {
     color: rgb(65, 172, 218);
     font-size: 1.1rem;
+    text-decoration: none;
 }
 
 .post-box>p {
     color: black;
     font-size: .9rem;
+}
+.post-box>i {
+    color: black;
+    font-size: .9rem;
+    
 }
