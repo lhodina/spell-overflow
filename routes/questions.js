@@ -146,8 +146,10 @@ router.post('/questions/delete/:id(\\d+)', csrfProtection, asyncHandler(async (r
         }
     });
     const question = await db.Question.findByPk(questionId);
-
+    
     if (answers.length > 0) {
+        console.log('here')
+        console.log(answers)
         for (let i = 0; i < answers.length; i++) {
             let answer = answers[i];
             answer.destroy();

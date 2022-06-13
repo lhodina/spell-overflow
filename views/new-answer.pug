@@ -8,9 +8,9 @@ append head
 block content
     div(id='container')
         div(id='headline')
-            h2= question.headline
+            h2 Question: #{question.headline}
         div(id='content')
-            p= question.content
+            p Description: #{question.content}
         div(id='answerForm')
             form(action=`/questions/${questionId}/answers/new` method="post")
                 input(type="hidden" name="_csrf" value=csrfToken)

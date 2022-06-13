@@ -4,6 +4,7 @@
 
 const deleteBtns = document.querySelectorAll('.delete-btn')
 
+
 for (let i = 0; i < deleteBtns.length; i++) {
     const btn = deleteBtns[i];
 
@@ -45,3 +46,4 @@ for (let i = 0; i < deleteQuesBtns.length; i++) {
         };
     });
 };
+

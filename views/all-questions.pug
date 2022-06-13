@@ -2,11 +2,11 @@ extends layout.pug
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/allQuestions.css")
+  
 block content
-    
+    script(src="/javascripts/index.js" type="module")
     h1= headline
     p= content
-    script(src="/javascripts/index.js" type="module")
     div(class="all-questions-container")
         div(class="questions-area") 
             div(id='header')   
