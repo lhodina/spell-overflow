@@ -16,8 +16,12 @@ block content
       a(id= 'newQuestionButton' href='/questions/new') Ask Question
   each question in questions
     div(class="question")
+      
       div(id='inner-question-bullets')
-        p= 'filler'
+        if countAnswers[question.id]
+          p #{countAnswers[question.id]} answers
+        else 
+          p 0 answers
       div(id='inner-question-headline')
         a(href=`/questions/${question.id}`)= question.headline
       div(id='inner-question-user')

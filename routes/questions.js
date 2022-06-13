@@ -35,16 +35,18 @@ router.get('/questions/:id(\\d+)', csrfProtection, asyncHandler(async (req, res)
     const allAnswers = Object.values(answers)
     const getUsername =
         newObj = {}
-        allAnswers.map(a => {
-            let x = a.userId
-            allUsers.forEach(u => {
-                if (x === u.id) {
-                    newObj[x] = u.username  
-                }
-            })
-            return newObj
+    console.log('222', getUsername)
+    allAnswers.map(a => {
+        let x = a.userId
+        allUsers.forEach(u => {
+            if (x === u.id) {
+                newObj[x] = u.username
+            }
         })
-    
+        return newObj
+    })
+
+    console.log(getUsername)
 
     res.render('question', {
         specificQuestion,
