@@ -1,18 +1,24 @@
 extends layout.pug
 
 include utils.pug
-
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/signup.css")
 block content
-    +validationErrorSummary(errors)
-    form(action="/users/signup" method="post")
-        input(type="hidden" name="_csrf" value=csrfToken)
-        +field("First Name", "firstName", user.firstName)
-        +field("Last Name", "lastName", user.lastName)
-        +field("Username", "username", user.username)
-        +field("Password", "password", user.password, 'password')
-        +field('Confirm Password', 'confirmPassword', '', 'password')
-        +field("Email", "email", user.email)
-        input(type="submit" value="Submit")
-        a(href='/') Cancel
-    div
-        a(href='/users/login') Already have an account?
+    div(id='sign-up-container') 
+        +validationErrorSummary(errors)
+        div(id='sign-up-inner-container')
+            h1 Sign Up
+            form(action="/users/signup" method="post")
+                input(type="hidden" name="_csrf" value=csrfToken)
+                +field("First Name", "firstName", user.firstName)
+                +field("Last Name", "lastName", user.lastName)
+                +field("Username", "username", user.username)
+                +field("Password", "password", user.password, 'password')
+                +field('Confirm Password', 'confirmPassword', '', 'password')
+                +field("Email", "email", user.email)
+                input(id='cancel-button' type="submit" value="Sign Up")
+                div(id='cancel-link')
+                    a(id='cancel-link' href='/') Cancel
+            div(id='login-link')
+                a(href='/users/login') Already have an account?

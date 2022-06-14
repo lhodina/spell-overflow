@@ -1,0 +1,56 @@
+/* question page */
+.all-questions-container {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    align-items: center;
+    margin-top: 75px;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    
+    
+}
+h1{
+    color: #555555;
+    
+    
+}
+.questions-area {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgb(211, 211, 211);
+    padding:1%;
+}
+div.questions-area{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+    
+  }
+
+.all-questions-container>img {
+    max-height: 300px;
+    margin: 30px;
+}
+
+.post-box {  
+    border-bottom: 1px solid rgb(211, 211, 211);
+    
+}
+
+.post-box>a {
+    color: rgb(65, 172, 218);
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+.post-box>p {
+    color: black;
+    font-size: .9rem;
+}
+.post-box>i {
+    color: black;
+    font-size: .9rem;
+    
+}

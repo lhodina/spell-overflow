@@ -5,19 +5,20 @@ extends layout.pug
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/new-question-form.css")
+  script(type="module" src="question.js")
 
 block content
-    div
+    div(id= 'new-question-container')
         form(id="question-form" action="/questions/new" method="post")
-            input(type="hidden" name="_csrf" value=csrfToken)
+            input(type="hidden" name="_csrf" value=csrfToken )
             div(id="question-headline")
-                label Title
+                label Title (255 maximum characters)
                     p Be specific and imagine you’re asking a question to another person
-                textarea(id="headline" name="headline")
+                textarea(id="headline" name="headline" maxlength=255)
             div(id="question-textarea")
                 label Body
                     p Include all the information someone would need to answer your question
                 textarea(id="public-question" name="content")
-            button(id="post-button") Post your question
-            a(href=`/questions` role='button') Cancel
-        //- p Testing testing Hotdog Sassafrass Bealzubub Coniferous
+            div(id='new-question-buttons')
+                button(id="post-button") Post your question
+                a(id='cancel-link' href=`/questions` role='button') Cancel

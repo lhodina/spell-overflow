@@ -97,6 +97,7 @@ router.get('/login', csrfProtection, (req, res) => {
     title: 'Login',
     csrfToken: req.csrfToken()
   });
+  
 });
 
 const loginValidators = [
@@ -110,6 +111,7 @@ const loginValidators = [
 
 
 router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, res) => {
+  console.log('\n\n\n\n\n', 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', '\n\n\n\n\n', req.csrfToken())
   const {
     email,
     password
@@ -119,6 +121,7 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
+    
     const user = await db.User.findOne({ where: { email } });
 
     if (user != null) {

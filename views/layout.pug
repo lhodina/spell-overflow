@@ -14,13 +14,16 @@ html
       //-   a(href='/')
       //-    img(src='https://cdn-icons-png.flaticon.com/512/12/12365.png')   
       li(id= 'navbarLi')
-        a(href='/') Home 
+        a(href='/') Spell Overflow 
+        
       //- li(id= 'navbarLi') 
       //-   a(href='/questions/new') New Question 
       li(id= 'navbarLi') 
         a(href='/users/aboutus') About Us 
+      if locals.authenticated
+        li(id= 'navbarLi')
       li(id= 'navbarLi') 
-        a(href='/questions') See All Questions 
+        a(href='/questions') All Questions 
       //- li(id= 'search') 
       //-   input(id='searchBar' type='text' placeholder= 'Search')
       if !locals.authenticated
@@ -33,11 +36,11 @@ html
           form(action='/users/logout' method='post')
             button(id= 'logOutButton') Log Out
 
-  div(id= 'welcomeText')     
-    if locals.authenticated
-      h1 Welcome #{user.firstName}
-      div(id= 'askQuestion')
-        a(id= 'newQuestionButton' href='/questions/new') Ask Question
+  //- div(id= 'welcomeText')     
+  //-   if locals.authenticated
+  //-     h1  Top Questions
+  //-     div(id= 'askQuestion')
+  //-       a(id= 'newQuestionButton' href='/questions/new') Ask Question
     
     
   //- else

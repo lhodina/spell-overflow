@@ -12,8 +12,31 @@ router.get('/questions/new', requireAuth, csrfProtection, (req, res) => {
 
 router.get('/questions', csrfProtection, asyncHandler(async (req, res) => {
     const questions = await db.Question.findAll();
-    console.log(questions)
-    res.render('all-questions', { questions, csrfToken: req.csrfToken() });
+    const answers = await db.Answer.findAll();
+    //const array = Object.values(answers)
+    questionIdArray = []
+    answerIdArray = []
+    const eachQuestion = (array) => {
+      array.forEach(q => questionIdArray.push(q.id))
+      return questionIdArray
+    }
+  
+    const eachAnswer = (array) => {
+      array.forEach(a => answerIdArray.push(a.questionId))
+      return answerIdArray
+    }
+    const allAnswerIds = eachAnswer(Object.values(answers))
+    const allQuestionIds = eachQuestion(Object.values(questions))
+  
+    const countAnswers =
+      countObj = {}
+    allAnswerIds.forEach(a => {
+      if (allQuestionIds.includes(a)) {
+        countObj[a] = countObj[a] ? countObj[a] + 1 : 1;
+      } 
+      return countObj
+    })
+    res.render('all-questions', { questions, countAnswers, csrfToken: req.csrfToken() });
 }));
 
 router.get('/questions/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
@@ -24,14 +47,27 @@ router.get('/questions/:id(\\d+)', csrfProtection, asyncHandler(async (req, res)
             id: specificQuestion.userId
         }
     })
-    console.log(specificQuestion)
+
     const thisUser = specificUser[0]
     const answers = await db.Answer.findAll({
         where: {
             questionId
         }
     })
-    console.log('THIS IS ANSWERS', answers)
+    const allUsers = await db.User.findAll()
+    const allAnswers = Object.values(answers)
+    const getUsername =
+        newObj = {}
+    allAnswers.map(a => {
+        let x = a.userId
+        allUsers.forEach(u => {
+            if (x === u.id) {
+                newObj[x] = u.username
+            }
+        })
+        return newObj
+    })
+
 
     res.render('question', {
         specificQuestion,
@@ -39,16 +75,21 @@ router.get('/questions/:id(\\d+)', csrfProtection, asyncHandler(async (req, res)
         content: specificQuestion.content,
         username: thisUser.username,
         answers,
+        getUsername,
         csrfToken: req.csrfToken()
     });
 }));
 
 router.post('/questions/new', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
-    console.log(req.body)
     const {
         headline,
         content
     } = req.body;
+    const alertFunc = () => {
+        window.alert('too many')
+    }
+    
+    if (headline.length > 255) return alertFunc()
     const question = await db.Question.build({
         headline,
         content,
@@ -98,6 +139,7 @@ router.get('/questions/delete/:id', requireAuth, csrfProtection, asyncHandler(as
 }));
 
 router.post('/questions/delete/:id(\\d+)', csrfProtection, asyncHandler(async (req, res) => {
+    console.log('test')
     const questionId = parseInt(req.params.id, 10);
     const answers = await db.Answer.findAll({
         where: {
@@ -105,8 +147,9 @@ router.post('/questions/delete/:id(\\d+)', csrfProtection, asyncHandler(async (r
         }
     });
     const question = await db.Question.findByPk(questionId);
-
+    
     if (answers.length > 0) {
+        
         for (let i = 0; i < answers.length; i++) {
             let answer = answers[i];
             answer.destroy();

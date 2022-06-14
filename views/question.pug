@@ -1,16 +1,19 @@
 extends layout.pug
 
 include utils.pug
-
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/question.css")
 block content
     div(class="containerall")
         h1= headline
-        p= content
-        h3= username
-        img(src=`${specificQuestion.picture}`)
+        h2= content
+        p= `Asked by ${username}`
+        if specificQuestion.picture
+            img(src=`${specificQuestion.picture}`)
         if user
             if specificQuestion.userId === user.id
-                a(href=`/questions/edit/${specificQuestion.id}` id= 'deleteButton') edit
+                a(href=`/questions/edit/${specificQuestion.id}` id= 'deleteButton') Edit
                 a(href=`/questions/delete/${specificQuestion.id}` id= 'deleteButton') Delete
         h2 Answers
             br
@@ -22,9 +25,12 @@ block content
 
             each answer in answers
                 div(id=`post-container-${answer.id}`).post-box
-                    p= answer.content
-                    div
-                        img(src=`${answer.picture}`)
+                    h6= answer.content
+                    if answer.picture
+                        div
+                            img(src=`${answer.picture}`)
+                    p Answered by 
+                        i #{getUsername[answer.userId]}
                     if user
                         if answer.userId === user.id
                             a(href=`/answers/edit/${answer.id}`)

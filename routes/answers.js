@@ -80,6 +80,7 @@ router.get('/answers/delete/:id(\\d+)', requireAuth, csrfProtection, asyncHandle
 
 router.post('/answers/delete/:id(\\d+)', requireAuth, csrfProtection, asyncHandler(async (req, res) => {
     const answerId = parseInt(req.params.id, 10);
+    console.log(answerId)
     const answer = await db.Answer.findByPk(answerId);
     const questionId = answer.questionId
     await answer.destroy();
@@ -87,35 +88,26 @@ router.post('/answers/delete/:id(\\d+)', requireAuth, csrfProtection, asyncHandl
 }));
 
 router.delete('/answers/:id(\\d+)', requireAuth, asyncHandler(async (req, res) => {
-    const answerId = parseInt(req.params.id, 10);
-    const answer = await db.Answer.findByPk(answerId);
-    await answer.destroy();
-
+    // const answerId = parseInt(req.params.id, 10);
+    // console.log(answerId)
+    // const answer = await db.Answer.findByPk(answerId);
+    // await answer.destroy();
+    console.log('222222')
+    const questionId = parseInt(req.params.id, 10);
+    const answers = await db.Answer.findAll({
+        where: {
+            questionId
+        }
+    });
+    if (answers.length > 0) {
+        
+        for (let i = 0; i < answers.length; i++) {
+            let answer = answers[i];
+            answer.destroy();
+        }
+    } 
     res.json({message: 'Success'})
 }));
-
-/*
-ROUTES:
-GET /answers/new
-    POST /answers
-    GET /questions/:id
-
-GET /answers/:id/edit
-    POST /answers
-    GET /questions/:id
-
-
-//- ANSWER MODEL:
-//- id
-//- content
-//- picture
-//- userId
-//- questionId
-
-
-QUESTIONS AND REVIEW:
-
-*/
 
 
 module.exports = router;

@@ -1,11 +1,18 @@
 extends layout.pug
-
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/delete.css")
 block content
+
   div(class="containerall")
-    h1= headline
-    p= content
-    h3= username
-    form(action=`/questions/delete/${questionId}` method='post')
-      input(type='hidden' name='_csrf' value=csrfToken)
-      button Delete Question
-      a(href=`/questions/${questionId}` role='button') Cancel
+    div(id='test')
+      h1 Delete this question?
+      div(id='delete-this')
+        div(id='delete-info')
+          h2 Question: #{headline}
+          p= content
+        form(id='delete-form' action=`/questions/delete/${questionId}` method='post')
+          input(type='hidden' name='_csrf' value=csrfToken)
+          div(id='buttons')
+            button(id='delete-button') Delete
+            a(id='cancel-link' href=`/questions/${questionId}` role='button') Cancel
