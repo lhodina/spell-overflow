@@ -7,6 +7,10 @@
     "start:development": "nodemon -r dotenv/config ./bin/www",
     "start:production": "node ./bin/www"
   },
+  "engines": {
+    "node": "16.14.0"
+  },
+
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.7.2",
