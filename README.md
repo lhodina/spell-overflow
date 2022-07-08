@@ -18,7 +18,7 @@ Spell Overflow used javascript, express, and sequelize for its creation. Pug and
 
 
 ## Link to live site
-https://spell-overflow2.herokuapp.com/
+https://spell-overflow-2.herokuapp.com/
 
 
 ## Link to Wiki docs

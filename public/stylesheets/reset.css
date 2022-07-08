@@ -171,8 +171,8 @@ body {
   background-color: hsl(205deg 47% 42%);
 }
 
-#footer {
 
+#footer {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -184,6 +184,7 @@ body {
   background-color: #232629;
   padding-bottom: 50px;
 }
+
 
 #footer h3 {
   color: #969b9f;
@@ -200,5 +201,6 @@ body {
   font-size: 17px;
   font-weight: normal;
   text-decoration: none;
+
 
 }
