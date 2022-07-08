@@ -50,4 +50,9 @@ router.get('/', csrfProtection, asyncHandler(async (req, res) => {
 
 }));
 
+
+router.get('/*', csrfProtection, asyncHandler(async (req, res) => { 
+  res.render('notfound')
+}))
+
 module.exports = router;

@@ -1,0 +1,11 @@
+#notFound{
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#inner-notFound{
+    margin: auto;
+    text-align: center;
+}
