@@ -180,9 +180,9 @@ body {
   bottom: 0;
   left: 0;
   width: 100%;
-  position: absolute;
+  position: fixed;
   background-color: #232629;
-  padding-bottom: 50px;
+  padding-bottom: 1rem;
 }
 
 
